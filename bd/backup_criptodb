@@ -1,0 +1,245 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 16.2
+-- Dumped by pg_dump version 16.2
+
+-- Started on 2025-09-18 16:22:09
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 4 (class 2615 OID 2200)
+-- Name: public; Type: SCHEMA; Schema: -; Owner: pg_database_owner
+--
+
+CREATE SCHEMA public;
+
+
+ALTER SCHEMA public OWNER TO pg_database_owner;
+
+--
+-- TOC entry 4804 (class 0 OID 0)
+-- Dependencies: 4
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
+--
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
+
+SET default_tablespace = '';
+
+--
+-- TOC entry 216 (class 1259 OID 57949)
+-- Name: rol; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.rol (
+    id_rol integer NOT NULL,
+    nombre character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.rol OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 57948)
+-- Name: rol_id_rol_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.rol_id_rol_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.rol_id_rol_seq OWNER TO postgres;
+
+--
+-- TOC entry 4805 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: rol_id_rol_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.rol_id_rol_seq OWNED BY public.rol.id_rol;
+
+
+--
+-- TOC entry 218 (class 1259 OID 57956)
+-- Name: usuarios; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.usuarios (
+    id_usuario integer NOT NULL,
+    id_rol integer NOT NULL,
+    nombres character varying(100) NOT NULL,
+    apellidos character varying(100) NOT NULL,
+    direccion1 character varying(150),
+    direccion2 character varying(150),
+    nombre_empresa character varying(100),
+    pais character varying(100),
+    ciudad character varying(100),
+    codigo_postal character varying(20),
+    telefono_movil character varying(20),
+    contacto_alterno character varying(20),
+    correo_electronico character varying(150) NOT NULL,
+    facebook_url character varying(255),
+    twitter_url character varying(255),
+    instagram_url character varying(255),
+    linkedin_url character varying(255),
+    nombre_usuario character varying(100) NOT NULL,
+    contrasena character varying(255) NOT NULL,
+    habilitar_doble_autenticacion boolean DEFAULT false,
+    fecha_creacion timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.usuarios OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 57955)
+-- Name: usuarios_id_usuario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.usuarios_id_usuario_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.usuarios_id_usuario_seq OWNER TO postgres;
+
+--
+-- TOC entry 4806 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: usuarios_id_usuario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.usuarios_id_usuario_seq OWNED BY public.usuarios.id_usuario;
+
+
+--
+-- TOC entry 4639 (class 2604 OID 57952)
+-- Name: rol id_rol; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rol ALTER COLUMN id_rol SET DEFAULT nextval('public.rol_id_rol_seq'::regclass);
+
+
+--
+-- TOC entry 4640 (class 2604 OID 57959)
+-- Name: usuarios id_usuario; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios ALTER COLUMN id_usuario SET DEFAULT nextval('public.usuarios_id_usuario_seq'::regclass);
+
+
+--
+-- TOC entry 4796 (class 0 OID 57949)
+-- Dependencies: 216
+-- Data for Name: rol; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.rol VALUES (1, 'Administrador');
+INSERT INTO public.rol VALUES (2, 'Usuario');
+
+
+--
+-- TOC entry 4798 (class 0 OID 57956)
+-- Dependencies: 218
+-- Data for Name: usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.usuarios VALUES (2, 2, 'María', 'Gómez', 'Carrera 45 #12-34', NULL, 'Clínica Vida', 'México', 'CDMX', '07000', '5559876543', NULL, 'maria.gomez@example.com', NULL, NULL, 'https://instagram.com/mariag', NULL, 'mariag', 'password123', false, '2025-09-17 21:56:08.938311');
+INSERT INTO public.usuarios VALUES (3, 2, 'Andrés', 'Ramírez', 'Av. Siempre Viva 742', NULL, NULL, 'Argentina', 'Buenos Aires', '1406', '1134567890', NULL, 'andres.ramirez@example.com', 'https://facebook.com/andresramirez', NULL, NULL, NULL, 'andresr', 'qwerty', false, '2025-09-17 21:56:08.938311');
+INSERT INTO public.usuarios VALUES (4, 2, 'Lucía', 'Fernández', 'Calle Mayor 56', 'Piso 3', 'SaludTotal', 'España', 'Madrid', '28013', '612345678', '622334455', 'lucia.fernandez@example.com', NULL, 'https://twitter.com/luciaf', NULL, 'https://linkedin.com/in/luciaf', 'luciaf', 'securepass', true, '2025-09-17 21:56:08.938311');
+INSERT INTO public.usuarios VALUES (1, 1, 'Carlos', 'Pérez', 'Calle 123', 'Apto 4B', 'TechSoft', 'Colombia', 'Bogotá', '110111', '3001234567', '3107654321', 'carlos.perez@example.com', 'https://facebook.com/carlosperez', 'https://twitter.com/carlosp', 'https://instagram.com/carlosp', 'https://linkedin.com/in/carlosperez', 'carlosp', '$2a$10$zOObHVw7/7rWLxwWM/GWm.pHz6vHAUvj.IS3q9KhRSbJH/wwQlxzi', true, '2025-09-17 21:56:08.938311');
+INSERT INTO public.usuarios VALUES (5, 1, 'franco', 'miguel', 'Carerrara 132', 'carrera 23', 'BPMco', 'Colombia', 'ad34', '123', '300021548848', '32122554', 'franco@Gmail.com', NULL, NULL, NULL, NULL, 'franncd12', '$2b$10$Mpl2Fl5/Htf3iRbX7bqyQ.aOYQ.YHy279tmeerndPEq2CY9nmhcey', true, '2025-09-17 23:52:19.096678');
+INSERT INTO public.usuarios VALUES (6, 2, 'Valen ', 'Norena', 'Villa Nueva ', 'Ondas de Otun ', 'Veterinaria S.A.S', 'Colombia', '234valengL2', '12321', '300021548', '3212255434', 'valen12@gmail.com', NULL, NULL, NULL, NULL, 'vlane12', '$2b$10$cmP6OnVrxjsSmIwaryTm6urzlKVVZrJDNbYc0lcbjytPpbO3OEFIe', true, '2025-09-18 04:38:32.939337');
+
+
+--
+-- TOC entry 4807 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: rol_id_rol_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.rol_id_rol_seq', 6, true);
+
+
+--
+-- TOC entry 4808 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: usuarios_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.usuarios_id_usuario_seq', 6, true);
+
+
+--
+-- TOC entry 4644 (class 2606 OID 57954)
+-- Name: rol rol_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rol
+    ADD CONSTRAINT rol_pkey PRIMARY KEY (id_rol);
+
+
+--
+-- TOC entry 4646 (class 2606 OID 57967)
+-- Name: usuarios usuarios_correo_electronico_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios
+    ADD CONSTRAINT usuarios_correo_electronico_key UNIQUE (correo_electronico);
+
+
+--
+-- TOC entry 4648 (class 2606 OID 57969)
+-- Name: usuarios usuarios_nombre_usuario_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios
+    ADD CONSTRAINT usuarios_nombre_usuario_key UNIQUE (nombre_usuario);
+
+
+--
+-- TOC entry 4650 (class 2606 OID 57965)
+-- Name: usuarios usuarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios
+    ADD CONSTRAINT usuarios_pkey PRIMARY KEY (id_usuario);
+
+
+--
+-- TOC entry 4651 (class 2606 OID 57970)
+-- Name: usuarios fk_usuarios_rol; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios
+    ADD CONSTRAINT fk_usuarios_rol FOREIGN KEY (id_rol) REFERENCES public.rol(id_rol) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+-- Completed on 2025-09-18 16:22:10
+
+--
+-- PostgreSQL database dump complete
+--
+
