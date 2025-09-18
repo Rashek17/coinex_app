@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>COINEX | Plantilla Responsive Bootstrap 5 Panel de Administración</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico" />
+    <link rel="stylesheet" href="../../assets/css/libs.min.css">
+    <link rel="stylesheet" href="../../assets/css/coinex.css?v=1.0.0">
+</head>
+
+<body class="" data-bs-spy="scroll" data-bs-target="#elements-section" data-bs-offset="0" tabindex="0">
+    <!-- loader Start -->
+    <div id="loading">
+        <div class="loader simple-loader">
+            <div class="loader-body"></div>
+        </div>
+    </div>
+    <!-- loader END -->
+    <div style="background-image: url('../../assets/images/auth/01.png')">
+        <div class="wrapper">
+            <section class="vh-100 bg-image">
+                <div class="container h-100">
+                    <div class="row justify-content-center h-100 align-items-center">
+                        <div class="col-md-6 mt-5">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="auth-form">
+                                        <h2 class="text-center mb-4">Iniciar Sesión</h2>
+                                        <form id="loginForm">
+                                            <p>Bienvenido, por favor ingrese sus credenciales para continuar.</p>
+                                            <div class="form-floating mb-3">
+                                                <input type="email" class="form-control" name="email" id="floatingInput"
+                                                    placeholder="nombre@ejemplo.com" required>
+                                                <label for="floatingInput">Correo Electrónico</label>
+                                            </div>
+                                            <div class="form-floating mb-2">
+                                                <input type="password" class="form-control" name="password"
+                                                    id="Password" placeholder="Contraseña" required>
+                                                <label for="Password">Contraseña</label>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                                                <div class="form-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="Remember">
+                                                        <label class="form-check-label"
+                                                            for="Remember">¿Recordarme?</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <a href="#page-forgot-password.html">¿Olvidó su contraseña?</a>
+                                                </div>
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-primary">Ingresar</button>
+                                            </div>
+                                        </form>
+
+                                        <div class="new-account mt-3 text-center">
+                                            <p>¿No tienes una cuenta? <a class=""
+                                                    href="../../dashboard/auth/sign-up.html">Haz clic aquí para
+                                                    registrarte</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+<!-- Backend Bundle JavaScript -->
+<script src="../../assets/js/libs.min.js"></script>
+<!-- widgetchart JavaScript -->
+<script src="../../assets/js/charts/widgetcharts.js"></script>
+<!-- fslightbox JavaScript -->
+<script src="../../assets/js/fslightbox.js"></script>
+<!-- app JavaScript -->
+<script src="../../assets/js/app.js"></script>
+<!-- apexchart JavaScript -->
+<script src="../../assets/js/charts/apexcharts.js"></script>
+
+<script>
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        const res = await fetch("http://localhost:4000/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const data = await res.json();
+        console.log(data);
+
+        if (res.ok) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Bienvenido " + data.usuario.nombre,
+                background: "#000",       // Fondo negro
+                color: "#fff",            // Texto blanco
+                showConfirmButton: false,
+                timer: 2000
+            });
+
+            setTimeout(() => {
+                window.location.href = "../../../html/dashboard/index.html";
+            }, 3000);
+        } else {
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: data.error,
+                background: "#000",       // Fondo negro
+                color: "#fff",            // Texto blanco
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
+
+
+
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+</html>
