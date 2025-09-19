@@ -5,6 +5,9 @@ require("dotenv").config();
 const pool = require("./db");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
+const { OpenAI  } = require("openai");
+const { GPT4All } = require('gpt4all');
+const path = require('path');
 
 const app = express();
 app.use(cors());
@@ -229,8 +232,82 @@ app.get("/api/crypto/bitcoin", async (req, res) => {
   }
 });
 
+/// Endpoint para historial tipo "History" del frontend usando CoinGecko
+app.get("/api/crypto/historyCard/:symbol", async (req, res) => {
+  try {
+    const symbolMap = {
+      BTC: "bitcoin",
+      ETH: "ethereum",
+      LTC: "litecoin",
+      XMR: "monero"
+    };
 
-// 🚀 Levantar servidor
+    const symbol = req.params.symbol.toUpperCase();
+    const coinId = symbolMap[symbol];
+
+    if (!coinId) return res.status(400).json({
+      error: "Símbolo no soportado"
+    });
+
+    const url = `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=5`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Error en CoinGecko: ${response.status}`);
+
+    const data = await response.json();
+
+    // Mapear los precios y limitar a los últimos 5 elementos
+    const history = data.prices.map((item, index, arr) => {
+      const date = new Date(item[0]);
+      const price = item[1];
+      let priceChange = "+0.00";
+      let priceChangeType = "success";
+
+      if (index > 0) {
+        const prev = arr[index - 1][1];
+        const change = price - prev;
+        priceChange = `${change >= 0 ? "+" : ""}${change.toFixed(2)}`;
+        priceChangeType = change >= 0 ? "success" : "danger";
+      }
+
+      return {
+        img: coinId === "bitcoin" ? "01.png" : coinId === "ethereum" ? "09.png" : "06.png",
+        name: symbol === "BTC" ? "Bitcoin" : symbol === "ETH" ? "Ethereum" : "Litecoin",
+        priceChange,
+        description: symbol === "BTC" ?
+          "Bitcoins Evolution™. 234000 Satisfied Customers From 107 Countries." : symbol === "ETH" ?
+          "Ethereum is a decentralized, blockchain with smart contract functionality" : "Litecoin is a peer-to-peer cryptocurrency and open-source software",
+        date: date.toLocaleDateString()
+      };
+    }).slice(-3); // Limitar solo a los últimos 5 elementos
+
+    res.json(history);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: error.message
+    });
+  }
+});
+
+app.get("/api/data/dataTable", async (req, res) => {
+  try {
+    const response = await axios.get("https://api.coinpaprika.com/v1/tickers");
+      console.log("👉 Entró al endpoint /api/crypto/dataTable");
+    // solo los primeros 5
+    const top5 = response.data.slice(0, 5);
+
+    res.json(top5);
+  } catch (error) {
+    console.error("Error en CoinPaprika:", error.message);
+    res.status(500).json({
+      error: "Error al obtener datos de CoinPaprika"
+    });
+  }
+});
+
+
+//  Levantar servidor
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);

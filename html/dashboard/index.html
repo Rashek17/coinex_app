@@ -566,7 +566,27 @@
                                        <li><a href="#" class="dropdown-item moneda" data-id="monero" data-simbolo="XMR">
                                              <img src="../assets/images/coins/08.png"
                                                 class="img-fluid avatar avatar-30 avatar-rounded"> Monero</a></li>
+                                       <li><a href="#" class="dropdown-item moneda" data-id="dogecoin"
+                                             data-simbolo="DOGE">
+                                             <img src="../assets/images/coins/04.png"
+                                                class="img-fluid avatar avatar-30 avatar-rounded"> Dogecoin</a></li>
+                                       <li><a href="#" class="dropdown-item moneda" data-id="ripple" data-simbolo="XRP">
+                                             <img src="../assets/images/coins/05.png"
+                                                class="img-fluid avatar avatar-30 avatar-rounded"> Ripple</a></li>
+                                       <li><a href="#" class="dropdown-item moneda" data-id="cardano"
+                                             data-simbolo="ADA">
+                                             <img src="../assets/images/coins/07.png"
+                                                class="img-fluid avatar avatar-30 avatar-rounded"> Cardano</a></li>
+                                       <li><a href="#" class="dropdown-item moneda" data-id="polkadot"
+                                             data-simbolo="DOT">
+                                             <img src="../assets/images/coins/09.png"
+                                                class="img-fluid avatar avatar-30 avatar-rounded"> Polkadot</a></li>
+                                       <li><a href="#" class="dropdown-item moneda" data-id="binancecoin"
+                                             data-simbolo="BNB">
+                                             <img src="../assets/images/coins/10.png"
+                                                class="img-fluid avatar avatar-30 avatar-rounded"> Binance Coin</a></li>
                                     </ul>
+
                                  </div>
                               </div>
 
@@ -614,7 +634,7 @@
                         <div class="dropdown">
                            <button class="btn btn-primary w-100" type="button" id="dropdownMenuButton3"
                               data-bs-toggle="dropdown" aria-expanded="false">
-                              Comprar -  Vender
+                              Comprar - Vender
                            </button>
                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
                               <div class="cardbuysell mb-0">
@@ -740,9 +760,12 @@
                            <div class="card shining-card mt-3" id="crypto-card-container-2">
                               <div class="card">
                                  <div class="card-header">
-                                    <div class="header-title">
-                                       <h5 class="card-title mb-0">Resumen de cuenta (Bitcoin)</h5>
+                                    <div class="header-title d-flex align-items-center">
+                                       <img src="../assets/images/coins/01.png"
+                                          class="img-fluid avatar avatar-30 avatar-rounded me-2" alt="Bitcoin">
+                                       <h5 class="card-title mb-0">Resumen de cuenta</h5>
                                     </div>
+
                                  </div>
                                  <div class="card-body text-center">
                                     <div class="row">
@@ -822,26 +845,14 @@
                                           561.511 BTC
                                        </button>
                                        <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton5">
-                                          <li><a href="#" class="dropdown-item">
-                                                <img src="../assets/images/coins/01.png"
-                                                   class="img-fluid avatar avatar-30 avatar-rounded" alt="img75">
-                                                561.511 BTC
-                                             </a></li>
-                                          <li><a href="#" class="dropdown-item">
-                                                <img src="../assets/images/coins/06.png"
-                                                   class="img-fluid avatar avatar-30 avatar-rounded" alt="img76">
-                                                561.511 LTC
-                                             </a></li>
-                                          <li><a href="#" class="dropdown-item">
-                                                <img src="../assets/images/coins/03.png"
-                                                   class="img-fluid avatar avatar-30 avatar-rounded" alt="img77">
-                                                561.511 ETH
-                                             </a></li>
-                                          <li><a href="#" class="dropdown-item">
-                                                <img src="../assets/images/coins/08.png"
-                                                   class="img-fluid avatar avatar-30 avatar-rounded" alt="img78">
-                                                561.511 XMR
-                                             </a></li>
+                                          <li><a href="#" class="dropdown-item" data-symbol="BTC"
+                                                data-img="01.png">Bitcoin</a></li>
+                                          <li><a href="#" class="dropdown-item" data-symbol="LTC"
+                                                data-img="06.png">Litecoin</a></li>
+                                          <li><a href="#" class="dropdown-item" data-symbol="ETH"
+                                                data-img="03.png">Ethereum</a></li>
+                                          <li><a href="#" class="dropdown-item" data-symbol="XMR"
+                                                data-img="08.png">Monero</a></li>
                                        </ul>
                                     </div>
                                  </div>
@@ -852,54 +863,31 @@
                                     <div class="form-group mb-3">
                                        <div class="input-group pt-1">
                                           <span class="input-group-text" id="basic-addon3">BTC</span>
-                                          <input type="text" class="form-control col-lg-8" placeholder="0,000000"
-                                             aria-label="Valor a enviar" aria-describedby="basic-addon3">
+                                          <input type="text" class="form-control col-lg-8" id="inputEnviar"
+                                             placeholder="0,000000" aria-label="Valor a enviar">
                                        </div>
                                     </div>
 
                                     <div class="form-group mb-3">
                                        <div class="input-group pt-2">
                                           <span class="input-group-text" id="basic-addon4">BPL</span>
-                                          <input type="text" class="form-control col-lg-8" placeholder="0,000000"
-                                             aria-label="Valor a recibir" aria-describedby="basic-addon3">
+                                          <input type="text" class="form-control col-lg-8" id="inputRecibir"
+                                             placeholder="0,000000" aria-label="Valor a recibir" readonly>
                                        </div>
                                     </div>
 
                                     <div class="form-group mb-3">
                                        <div class="input-group pt-2">
                                           <span class="input-group-text" id="basic-addon6">Total</span>
-                                          <input type="text" class="form-control col-lg-8" placeholder="0,000000"
-                                             aria-label="Total" aria-describedby="basic-addon3">
+                                          <input type="text" class="form-control col-lg-8" id="inputTotal"
+                                             placeholder="0,000000" aria-label="Total" readonly>
                                        </div>
                                     </div>
 
                                     <div class="">
                                        <div class="d-grid gap-card grid-cols-2">
-                                          <button class="btn btn-success" type="button">
-                                             <span>COMPRAR</span>
-                                             <svg class="rotate-45" width="24" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M19.75 11.7256L4.75 11.7256" stroke="currentColor"
-                                                   stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                                </path>
-                                                <path d="M13.7002 5.70124L19.7502 11.7252L13.7002 17.7502"
-                                                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                   stroke-linejoin="round"></path>
-                                             </svg>
-                                          </button>
-
-                                          <button class="btn btn-danger" type="button">
-                                             <span>VENDER</span>
-                                             <svg class="rotate-45" width="24" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4.25 12.2744L19.25 12.2744" stroke="currentColor"
-                                                   stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                                </path>
-                                                <path d="M10.2998 18.2988L4.2498 12.2748L10.2998 6.24976"
-                                                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                   stroke-linejoin="round"></path>
-                                             </svg>
-                                          </button>
+                                          <button class="btn btn-success" type="button" id="btnComprar">COMPRAR</button>
+                                          <button class="btn btn-danger" type="button" id="btnVender">VENDER</button>
                                        </div>
                                     </div>
                                  </form>
@@ -944,230 +932,10 @@
                                        <th scope="col">Market Cap</th>
                                        <th scope="col">Volume(24th)</th>
                                        <th scope="col">Circulating</th>
-                                       <th scope="col">Last 7 Days</th>
                                     </tr>
                                  </thead>
-                                 <tbody>
-                                    <tr class="white-space-no-wrap">
-                                       <td>
-                                          <img src="../assets/images/coins/02.png"
-                                             class="img-fluid avatar avatar-30 avatar-rounded" alt="img23" />
-                                          Bitcoin BTC<a class="button btn-primary badge ms-2" type="button">Buy</a>
-                                       </td>
-                                       <td class="pe-2">$40,501.87</td>
-                                       <td class="text-danger"><svg width="10" height="8" viewBox="0 0 8 5" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                             <path d="M4 4.5L0.535898 0L7.4641 0L4 4.5Z" fill="#FF2E2E" />
-                                          </svg>
-                                          6.93%
-                                       </td>
-                                       <td class="text-success"><svg width="10" height="8" viewBox="0 0 8 5" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                             <path d="M4 0.5L7.4641 5H0.535898L4 0.5Z" fill="#00EC42" />
-                                          </svg>
-                                          4.58%
-                                       </td>
-                                       <td>$123,456,789,159</td>
-                                       <td>$373,359,580,155<br>
-                                          <small class="ms-5">635,237 BTC</small>
-                                       </td>
-                                       <td class="ms-5">18,777,768 BTC</td>
-                                       <td>
-                                          <div class="d-flex justify-content-between">
-                                             <div id="sparklinechart-1"></div>
-                                             <div class="dropdown ms-4">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                   id="dropdownMenuButton10" data-bs-toggle="dropdown"
-                                                   aria-expanded="false" fill="none" viewBox="0 0 24 24"
-                                                   stroke="currentColor">
-                                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                      d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                                </svg>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton10">
-                                                   <li><a class="dropdown-item" href="#">View Charts</a></li>
-                                                   <li><a class="dropdown-item" href="#">View Markets</a></li>
-                                                   <li><a class="dropdown-item" href="#">View Historical Data</a></li>
-                                                </ul>
-                                             </div>
-                                          </div>
-                                       </td>
-                                    </tr>
-                                    <tr class="white-space-no-wrap">
-                                       <td>
-                                          <img src="../assets/images/coins/02.png"
-                                             class="img-fluid avatar avatar-30 avatar-rounded" alt="img23" />
-                                          Ethereum ETH<a class="button btn-primary badge ms-2" type="button">Buy</a>
-                                       </td>
-                                       <td class="pe-2">$2,796.60</td>
-                                       <td class="text-danger"><svg width="10" height="8" viewBox="0 0 8 5" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                             <path d="M4 4.5L0.535898 0L7.4641 0L4 4.5Z" fill="#FF2E2E" />
-                                          </svg>
-                                          3.33%
-                                       </td>
-                                       <td class="text-success"><svg width="10" height="8" viewBox="0 0 8 5" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                             <path d="M4 0.5L7.4641 5H0.535898L4 0.5Z" fill="#00EC42" />
-                                          </svg>
-                                          15.45%
-                                       </td>
-                                       <td>$123,456,789,159</td>
-                                       <td>$373,359,580,155<br>
-                                          <small class="ms-5">635,237 BTC</small>
-                                       </td>
-                                       <td class="ms-5">18,777,768 BTC</td>
-                                       <td>
-                                          <div class="d-flex justify-content-between">
-                                             <div id="sparklinechart-2"></div>
-                                             <div class="dropdown ms-4">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                   id="dropdownMenuButton10" data-bs-toggle="dropdown"
-                                                   aria-expanded="false" fill="none" viewBox="0 0 24 24"
-                                                   stroke="currentColor">
-                                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                      d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                                </svg>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton10">
-                                                   <li><a class="dropdown-item" href="#">View Charts</a></li>
-                                                   <li><a class="dropdown-item" href="#">View Markets</a></li>
-                                                   <li><a class="dropdown-item" href="#">View Historical Data</a></li>
-                                                </ul>
-                                             </div>
-                                          </div>
-                                       </td>
-                                    </tr>
-                                    <tr class="white-space-no-wrap">
-                                       <td>
-                                          <img src="../assets/images/coins/02.png"
-                                             class="img-fluid avatar avatar-30 avatar-rounded" alt="img23" />
-                                          Monero XMR<a class="button btn-primary badge ms-2" type="button">Buy</a>
-                                       </td>
-                                       <td class="pe-2">$1.00</td>
-                                       <td class="text-success"><svg width="10" height="8" viewBox="0 0 8 5" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                             <path d="M4 0.5L7.4641 5H0.535898L4 0.5Z" fill="#00EC42" />
-                                          </svg>
-                                          0.01%
-                                       </td>
-                                       <td class="text-danger"><svg width="10" height="8" viewBox="0 0 8 5" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                             <path d="M4 4.5L0.535898 0L7.4641 0L4 4.5Z" fill="#FF2E2E" />
-                                          </svg>
-                                          0.02%
-                                       </td>
-                                       <td>$123,456,789,159</td>
-                                       <td>$373,359,580,155<br>
-                                          <small class="ms-5">635,237 BTC</small>
-                                       </td>
-                                       <td class="ms-5">18,777,768 BTC</td>
-                                       <td>
-                                          <div class="d-flex justify-content-between">
-                                             <div id="sparklinechart-3"></div>
-                                             <div class="dropdown ms-4">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                   id="dropdownMenuButton10" data-bs-toggle="dropdown"
-                                                   aria-expanded="false" fill="none" viewBox="0 0 24 24"
-                                                   stroke="currentColor">
-                                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                      d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                                </svg>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton10">
-                                                   <li><a class="dropdown-item" href="#">View Charts</a></li>
-                                                   <li><a class="dropdown-item" href="#">View Markets</a></li>
-                                                   <li><a class="dropdown-item" href="#">View Historical Data</a></li>
-                                                </ul>
-                                             </div>
-                                          </div>
-                                       </td>
-                                    </tr>
-                                    <tr class="white-space-no-wrap">
-                                       <td>
-                                          <img src="../assets/images/coins/02.png"
-                                             class="img-fluid avatar avatar-30 avatar-rounded" alt="img23" />
-                                          Litecoin LTC<a class="button btn-primary badge ms-2" type="button">Buy</a>
-                                       </td>
-                                       <td class="pe-2">$40,501.87</td>
-                                       <td class="text-danger"><svg width="10" height="8" viewBox="0 0 8 5" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                             <path d="M4 4.5L0.535898 0L7.4641 0L4 4.5Z" fill="#FF2E2E" />
-                                          </svg>
-                                          6.93%
-                                       </td>
-                                       <td class="text-success"><svg width="10" height="8" viewBox="0 0 8 5" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                             <path d="M4 0.5L7.4641 5H0.535898L4 0.5Z" fill="#00EC42" />
-                                          </svg>
-                                          4.58%
-                                       </td>
-                                       <td>$123,456,789,159</td>
-                                       <td>$373,359,580,155<br>
-                                          <small class="ms-5">635,237 BTC</small>
-                                       </td>
-                                       <td class="ms-5">18,777,768 BTC</td>
-                                       <td>
-                                          <div class="d-flex justify-content-between">
-                                             <div id="sparklinechart-4"></div>
-                                             <div class="dropdown ms-4">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                   id="dropdownMenuButton10" data-bs-toggle="dropdown"
-                                                   aria-expanded="false" fill="none" viewBox="0 0 24 24"
-                                                   stroke="currentColor">
-                                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                      d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                                </svg>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton10">
-                                                   <li><a class="dropdown-item" href="#">View Charts</a></li>
-                                                   <li><a class="dropdown-item" href="#">View Markets</a></li>
-                                                   <li><a class="dropdown-item" href="#">View Historical Data</a></li>
-                                                </ul>
-                                             </div>
-                                          </div>
-                                       </td>
-                                    </tr>
-                                    <tr class="white-space-no-wrap">
-                                       <td>
-                                          <img src="../assets/images/coins/02.png"
-                                             class="img-fluid avatar avatar-30 avatar-rounded" alt="img23" />
-                                          Bitcoin BTC<a class="button btn-primary badge ms-2" type="button">Buy</a>
-                                       </td>
-                                       <td class="pe-2">$40,501.87</td>
-                                       <td class="text-success"><svg width="10" height="8" viewBox="0 0 8 5" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                             <path d="M4 0.5L7.4641 5H0.535898L4 0.5Z" fill="#00EC42" />
-                                          </svg>
-                                          6.93%
-                                       </td>
-                                       <td class="text-danger"><svg width="10" height="8" viewBox="0 0 8 5" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                             <path d="M4 4.5L0.535898 0L7.4641 0L4 4.5Z" fill="#FF2E2E" />
-                                          </svg>
-                                          4.58%
-                                       </td>
-                                       <td>$123,456,789,159</td>
-                                       <td>$373,359,580,155<br>
-                                          <small class="ms-5">635,237 BTC</small>
-                                       </td>
-                                       <td class="ms-5">18,777,768 BTC</td>
-                                       <td>
-                                          <div class="d-flex justify-content-between">
-                                             <div id="sparklinechart-5"></div>
-                                             <div class="dropdown ms-4">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                   id="dropdownMenuButton10" data-bs-toggle="dropdown"
-                                                   aria-expanded="false" fill="none" viewBox="0 0 24 24"
-                                                   stroke="currentColor">
-                                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                      d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                                </svg>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton10">
-                                                   <li><a class="dropdown-item" href="#">View Charts</a></li>
-                                                   <li><a class="dropdown-item" href="#">View Markets</a></li>
-                                                   <li><a class="dropdown-item" href="#">View Historical Data</a></li>
-                                                </ul>
-                                             </div>
-                                          </div>
-                                       </td>
-                                    </tr>
+                                 <tbody id="crypto-table-body">
+                                    <!-- Aquí se insertarán las filas de la tabla desde la API -->
                                  </tbody>
                               </table>
                            </div>
@@ -1181,15 +949,20 @@
                   <div class="col-lg-12">
                      <div class="card">
                         <div class="card-header">
-                           <div class="input-group search-input">
-                              <input type="search" class="form-control form-control-lg" placeholder="Search BTS/ETH">
+                           <div class="input-group">
+                              <input type="text" class="form-control" placeholder="Escribe tu mensaje..."
+                                 style="font-size: 14px;">
+                              <button class="btn btn-primary" type="button">Enviar</button>
                            </div>
                         </div>
-                        <div class="card-body d-flex align-items-center justify-content-center">
-                           <img src="../assets/images/coins/14.png" class="img-fluid p-0 w-75" alt="img60">
+                        <div class="card-body d-flex align-items-center justify-content-center"
+                           style="min-height: 200px;">
+                           <!-- Aquí se podrían mostrar los mensajes del chat -->
+                           <p class="text-muted">Tus mensajes aparecerán aquí...</p>
                         </div>
                      </div>
                   </div>
+
                   <div class="col-lg-12">
                      <div class="card">
                         <div class="card-header">
@@ -1198,56 +971,13 @@
                            </div>
                         </div>
                         <div class="card-body">
-                           <ul class="list-inline m-0 p-0">
-                              <li class="d-flex  align-items-center pt-3">
-                                 <div class="d-flex justify-content-between rounded-pill"><img
-                                       src="../assets/images/coins/01.png"
-                                       class="img-fluid avatar avatar-40 avatar-rounded" alt="img6">
-                                    <div class="ms-3 flex-grow-1">
-                                       <h5 class="mb-2">Bitcoin</h5>
-                                       <p class=" text-success mb-2">+$10,00</p>
-                                       <p class="fs-6">Bitcoins Evolution™. 234000 Satisfied Customers From 107
-                                          Countries.</p>
-                                    </div>
-                                    <div class="">
-                                       <p>11/02/21</p>
-                                    </div>
-                                 </div>
-                              </li>
-                              <li class="d-flex  align-items-center pt-3">
-                                 <div class="d-flex justify-content-between rounded-pill"><img
-                                       src="../assets/images/coins/09.png"
-                                       class="img-fluid avatar avatar-40 avatar-rounded" alt="img7">
-                                    <div class="ms-3 flex-grow-1">
-                                       <h5 class="mb-2">Ethereum</h5>
-                                       <p class=" text-danger mb-2">-$50,00</p>
-                                       <p class="fs-6">Ethereum is a decentralized, blockchain with smart contract
-                                          functionality</p>
-                                    </div>
-                                    <div class="">
-                                       <p>11/02/21</p>
-                                    </div>
-                                 </div>
-                              </li>
-                              <li class="d-flex  align-items-center pt-3">
-                                 <div class="d-flex justify-content-between rounded-pill"><img
-                                       src="../assets/images/coins/06.png"
-                                       class="img-fluid avatar avatar-40 avatar-rounded" alt="img8">
-                                    <div class="ms-3 flex-grow-1">
-                                       <h5 class="mb-2">Litecoin</h5>
-                                       <p class=" text-danger mb-2">-$50,00</p>
-                                       <p class="fs-6">Litecoin is a peer-to-peer cryptocurrency and open-source
-                                          software</p>
-                                    </div>
-                                    <div class="">
-                                       <p>11/02/21</p>
-                                    </div>
-                                 </div>
-                              </li>
+                           <ul class="list-inline m-0 p-0" id="history-list">
+                              <!-- Aquí se insertarán las operaciones desde la API -->
                            </ul>
                         </div>
                      </div>
                   </div>
+
                   <div class="col-lg-12">
                      <div class="card">
                         <div class="card-header d-flex justify-content-between flex-wrap">
@@ -1392,6 +1122,9 @@
    <script src="../assets/js/app.js"></script>
    <!-- apexchart JavaScript -->
    <script src="../assets/js/charts/apexcharts.js"></script>
+
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
    <script>
       async function cargarDatosCrypto(symbol, nombre, img) {
@@ -1623,14 +1356,285 @@
       actualizarComparativa();
 
 
+      // Arreglo de monedas soportadas con descripciones en español
+      const monedas = [
+         {
+            symbol: "BTC",
+            name: "Bitcoin",
+            img: "01.png",
+            descriptions: [
+               "Bitcoin es la primera criptomoneda descentralizada creada en 2009.",
+               "Se utiliza como reserva de valor y medio de intercambio digital.",
+               "Permite transferencias rápidas sin intermediarios bancarios.",
+               "Su oferta está limitada a 21 millones de monedas.",
+               "Es conocida por su alta volatilidad y adopción global."
+            ]
+         },
+         {
+            symbol: "ETH",
+            name: "Ethereum",
+            img: "03.png",
+            descriptions: [
+               "Ethereum es una plataforma de contratos inteligentes descentralizada.",
+               "Permite crear aplicaciones (DApps) sobre su blockchain.",
+               "Ether (ETH) es la moneda nativa utilizada para transacciones.",
+               "Ha impulsado la revolución de los NFTs y finanzas descentralizadas.",
+               "Su red permite ejecutar código sin censura ni intermediarios."
+            ]
+         },
+         {
+            symbol: "LTC",
+            name: "Litecoin",
+            img: "06.png",
+            descriptions: [
+               "Litecoin es una criptomoneda creada como alternativa más rápida a Bitcoin.",
+               "Sus transacciones son más rápidas y con comisiones más bajas.",
+               "Se basa en un algoritmo diferente llamado Scrypt.",
+               "Es ampliamente aceptada en comercios y plataformas de intercambio.",
+               "Es conocida como la plata digital frente al oro digital de Bitcoin."
+            ]
+         },
+         {
+            symbol: "XMR",
+            name: "Monero",
+            img: "08.png",
+            descriptions: [
+               "Monero es una criptomoneda enfocada en privacidad y anonimato.",
+               "Todas las transacciones son confidenciales y no rastreables.",
+               "Utiliza firmas en anillo y direcciones ocultas para proteger usuarios.",
+               "Ideal para quienes valoran la seguridad y privacidad financiera.",
+               "Es ampliamente utilizada en la comunidad que prioriza anonimato."
+            ]
+         }
+      ];
+
+
+
+      const historyList = document.getElementById("history-list");
+
+      // Función para cargar historial de una moneda
+      async function cargarHistory(symbol) {
+         try {
+            const response = await fetch(`http://localhost:4000/api/crypto/historyCard/${symbol}`);
+            if (!response.ok) throw new Error(`Error en la API: ${response.status}`);
+            return await response.json();
+         } catch (error) {
+            console.error(`Error cargando history ${symbol}:`, error);
+            return [];
+         }
+      }
+
+      // Función para actualizar historial con moneda aleatoria
+      async function actualizarHistorialRandom() {
+         // Seleccionar moneda aleatoria
+         const moneda = monedas[Math.floor(Math.random() * monedas.length)];
+
+         const data = await cargarHistory(moneda.symbol);
+         historyList.innerHTML = ""; // limpiar lista
+
+         data.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.className = "d-flex align-items-center pt-3";
+
+            // Aquí usamos la descripción correspondiente al índice
+            const description = moneda.descriptions[index] || moneda.descriptions[0];
+
+            li.innerHTML = `
+        <div class="d-flex justify-content-between rounded-pill">
+            <img src="../assets/images/coins/${item.img || moneda.img}" class="img-fluid avatar avatar-40 avatar-rounded" alt="${moneda.name}">
+            <div class="ms-3 flex-grow-1">
+                <h5 class="mb-2">${moneda.name}</h5>
+                <p class="text-${item.priceChangeType} mb-2">${item.priceChange}</p>
+                <p class="fs-6">${description}</p>
+            </div>
+            <div class="">
+                <p>${item.date}</p>
+            </div>
+        </div>
+    `;
+            historyList.appendChild(li);
+         });
+
+      }
+
+      // Ejecutar al cargar la página y luego cada minuto
+      actualizarHistorialRandom();
+      setInterval(actualizarHistorialRandom, 60000); // 60000 ms = 1 minuto
+
+
+
+      // Balance virtual
+      const balance = { BTC: 561.511, LTC: 200, ETH: 150, XMR: 50, BPL: 10000 };
+      let monedaSeleccionada = "BTC";
+      let monedaImg = "01.png";
+
+      // Precio simulado por moneda (BPL por unidad)
+      const precios = { BTC: 20000, LTC: 150, ETH: 1500, XMR: 250 };
+
+      // Inputs y botones
+      const inputEnviar = document.getElementById("inputEnviar");
+      const inputRecibir = document.getElementById("inputRecibir");
+      const inputTotal = document.getElementById("inputTotal");
+      const btnComprar = document.getElementById("btnComprar");
+      const btnVender = document.getElementById("btnVender");
+      const dropdownItems = document.querySelectorAll(".dropdown-item");
+      const dropdownBtn = document.getElementById("dropdownMenuButton5");
+      const addonMoneda = document.getElementById("basic-addon3");
+
+      // Selección de moneda desde dropdown
+      dropdownItems.forEach(item => {
+         item.addEventListener("click", (e) => {
+            e.preventDefault();
+            monedaSeleccionada = item.getAttribute("data-symbol");
+            monedaImg = item.getAttribute("data-img");
+            dropdownBtn.innerHTML = `<img src="../assets/images/coins/${monedaImg}" class="img-fluid avatar avatar-30 avatar-rounded"> ${balance[monedaSeleccionada].toFixed(3)} ${monedaSeleccionada}`;
+            addonMoneda.textContent = monedaSeleccionada;
+            inputEnviar.value = inputRecibir.value = inputTotal.value = "";
+         });
+      });
+
+      // Calcular total y BPL al escribir cantidad
+      inputEnviar.addEventListener("input", () => {
+         const cantidad = parseFloat(inputEnviar.value) || 0;
+         const total = cantidad * precios[monedaSeleccionada];
+         inputRecibir.value = total.toFixed(6);
+         inputTotal.value = total.toFixed(6);
+      });
+
+      // Comprar
+      btnComprar.addEventListener("click", () => {
+         const cantidad = parseFloat(inputEnviar.value) || 0;
+         const total = parseFloat(inputTotal.value) || 0;
+
+         if (balance.BPL < total) {
+            Swal.fire({
+               icon: "error",
+               title: "Fondos insuficientes",
+               text: "No tienes suficiente BPL para comprar.",
+            });
+            return;
+         }
+
+         balance[monedaSeleccionada] += cantidad;
+         balance.BPL -= total;
+
+         Swal.fire({
+            icon: "success",
+            title: "Compra realizada",
+            html: `Compraste <b>${cantidad}</b> ${monedaSeleccionada}.<br>
+             Balance: <b>${balance[monedaSeleccionada].toFixed(6)} ${monedaSeleccionada}</b>, 
+             BPL: <b>${balance.BPL.toFixed(2)}</b>`,
+         });
+
+         dropdownBtn.innerHTML = `<img src="../assets/images/coins/${monedaImg}" class="img-fluid avatar avatar-30 avatar-rounded"> ${balance[monedaSeleccionada].toFixed(3)} ${monedaSeleccionada}`;
+         inputEnviar.value = inputRecibir.value = inputTotal.value = "";
+      });
+
+      // Vender
+      btnVender.addEventListener("click", () => {
+         const cantidad = parseFloat(inputEnviar.value) || 0;
+         const total = parseFloat(inputTotal.value) || 0;
+
+         if (balance[monedaSeleccionada] < cantidad) {
+            Swal.fire({
+               icon: "error",
+               title: "Fondos insuficientes",
+               text: `No tienes suficiente ${monedaSeleccionada} para vender.`,
+            });
+            return;
+         }
+
+         balance[monedaSeleccionada] -= cantidad;
+         balance.BPL += total;
+
+         Swal.fire({
+            icon: "success",
+            title: "Venta realizada",
+            html: `Vendiste <b>${cantidad}</b> ${monedaSeleccionada}.<br>
+             Balance: <b>${balance[monedaSeleccionada].toFixed(6)} ${monedaSeleccionada}</b>, 
+             BPL: <b>${balance.BPL.toFixed(2)}</b>`,
+         });
+
+         dropdownBtn.innerHTML = `<img src="../assets/images/coins/${monedaImg}" class="img-fluid avatar avatar-30 avatar-rounded"> ${balance[monedaSeleccionada].toFixed(3)} ${monedaSeleccionada}`;
+         inputEnviar.value = inputRecibir.value = inputTotal.value = "";
+      });
 
 
 
 
+      async function cargarTabla() {
+         try {
+            const res = await fetch("http://localhost:4000/api/data/dataTable");
+            const result = await res.json();
+
+            console.log("Respuesta API tabla:", result);
+
+            // Asegurar que sea array
+            let cryptos = Array.isArray(result) ? result : [];
+            cryptos = cryptos.slice(0, 5);
+
+            console.log("Datos para tabla:", cryptos);
+
+            const tbody = document.getElementById("crypto-table-body");
+            tbody.innerHTML = "";
+
+            cryptos.forEach((coin, index) => {
+               const price = coin?.quotes?.USD?.price || 0;
+               const change24h = coin?.quotes?.USD?.percent_change_24h || 0;
+               const marketCap = coin?.quotes?.USD?.market_cap || 0;
+               const volume24h = coin?.quotes?.USD?.volume_24h || 0;
+               const supply = coin?.total_supply || 0;
 
 
+               const tr = document.createElement("tr");
+               tr.className = "white-space-no-wrap";
+
+               tr.innerHTML = `
+  <td>
+    <img src="../assets/images/coins/${String(index + 1).padStart(2, '0')}.png" 
+         class="img-fluid avatar avatar-30 avatar-rounded" alt="${coin.name}" />
+    ${coin.name} (${coin.symbol})
+    <a class="button btn-primary badge ms-2" type="button">Buy</a>
+  </td>
+  <td class="pe-2">$${price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+  <td class="${change24h < 0 ? "text-danger" : "text-success"}">
+    ${change24h.toFixed(2)}%
+  </td>
+  <td>$${marketCap.toLocaleString()}</td>
+  <td>$${volume24h.toLocaleString()}<br>
+      <small class="ms-5">${supply.toLocaleString()} ${coin.symbol}</small>
+  </td>
+  <td class="ms-5">${supply.toLocaleString()} ${coin.symbol}</td>
+  <td>
+    <div class="d-flex justify-content-between">
+      <div id="sparklinechart-${index + 1}"></div>
+      <div class="dropdown ms-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20"
+            id="dropdownMenuButton10" data-bs-toggle="dropdown"
+            aria-expanded="false" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+        </svg>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton10">
+          <li><a class="dropdown-item" href="#">View Charts</a></li>
+          <li><a class="dropdown-item" href="#">View Markets</a></li>
+          <li><a class="dropdown-item" href="#">View Historical Data</a></li>
+        </ul>
+      </div>
+    </div>
+  </td>
+`;
 
 
+               tbody.appendChild(tr);
+            });
+         } catch (err) {
+            console.error("Error cargando tabla:", err);
+         }
+      }
+
+      cargarTabla();
 
    </script>
 
