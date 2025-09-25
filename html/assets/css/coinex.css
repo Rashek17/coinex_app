@@ -20116,3 +20116,26 @@ body.offcanvas-active {
 
 .top-1 {
   top: 1rem; }
+
+  .dropdown-item-dash {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1rem;
+  clear: both;
+  font-weight: 400;
+  color: #fff;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0; }
+  .dropdown-item:hover, .dropdown-item:focus {
+    color: #e6881a;
+    background-color: #464649; }
+  .dropdown-item.active, .dropdown-item:active {
+    color: #202022;
+    text-decoration: none;
+    background-color: #FF971D; }
+  .dropdown-item.disabled, .dropdown-item:disabled {
+    color: #313135;
+    pointer-events: none;
+    background-color: transparent; }

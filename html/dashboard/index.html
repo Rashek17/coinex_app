@@ -62,6 +62,11 @@
       font-size: 0.7rem;
       color: #bbb;
    }
+
+   #analisisModal .modal-body {
+      max-height: 70vh;
+      overflow-y: auto;
+   }
 </style>
 
 <body class=" ">
@@ -175,7 +180,7 @@
                      </li>
                   </ul>
                </li>
-               <li class="nav-item">
+               <li class="nav-item" style="display: none;">
                   <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-auth" role="button" aria-expanded="false"
                      aria-controls="sidebar-user">
                      <i class="icon">
@@ -270,20 +275,6 @@
                      </i>
                      <span class="item-name">Mapas</span>
                   </a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link " href="../dashboard/icons/outline.html">
-                     <i class="icon">
-                        <svg width="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <path fill-rule="evenodd" clip-rule="evenodd"
-                              d="M19.739 6.15368C19.739 3.40281 17.8583 2.30005 15.1506 2.30005H8.79167C6.16711 2.30005 4.2002 3.32762 4.2002 5.97022V20.694C4.2002 21.4198 4.98115 21.877 5.61373 21.5221L11.9957 17.9422L18.3225 21.5161C18.9561 21.873 19.739 21.4158 19.739 20.689V6.15368Z"
-                              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                           </path>
-                           <path d="M8.27148 9.02811H15.5898" stroke="currentColor" stroke-width="1.5"
-                              stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                     </i>
-                     <span class="item-name">Íconos</span></a>
                </li>
                <li class="nav-item">
                   <a class="nav-link " href="../dashboard/errors/error404.html">
@@ -511,15 +502,15 @@
                            </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                           <li class="border-0"><a class="dropdown-item"
-                                 href="../dashboard/app/user-profile.html">Profile</a></li>
-                           <li class="border-0"><a class="dropdown-item"
-                                 href="../dashboard/app/user-privacy-setting.html">Privacy Setting</a></li>
+                           <li class="border-0"><a class="dropdown-item-dash"
+                                 href="../dashboard/app/user-profile.html">Perfil</a></li>
+                           <li class="border-0"><a class="dropdown-item-dash"
+                                 href="../dashboard/app/user-privacy-setting.html">Configuración de privacidad</a></li>
                            <li class="border-0">
                               <hr class="m-0 dropdown-divider">
                            </li>
-                           <li class="border-0"><a class="dropdown-item"
-                                 href="../dashboard/auth/sign-in.html">Logout</a></li>
+                           <li class="border-0"><a class="dropdown-item-dash"
+                                 href="../dashboard/auth/sign-in.html">Cerrar sesión</a></li>
                         </ul>
                      </li>
                   </ul>
@@ -631,94 +622,71 @@
                   </div>
                   <div class="col-xl-3">
                      <div class="d-grid grid-3-auto gap-card">
-                        <div class="dropdown">
-                           <button class="btn btn-primary w-100" type="button" id="dropdownMenuButton3"
-                              data-bs-toggle="dropdown" aria-expanded="false">
-                              Comprar - Vender
-                           </button>
-                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                              <div class="cardbuysell mb-0">
-                                 <div class="card-body iq-extra">
-                                    <div class="d-flex justify-content-between">
-                                       <div class="header-title">
-                                          <p class="fs-6">Comprar</p>
+                        <div>
+                           <div>
+                              <button class="btn btn-primary w-100" type="button" id="analizarBtn">
+                                 Analizar Portafolio
+                              </button>
+                              <!-- Modal (popup) analizar portafolio -->
+                              <div class="modal fade" id="analisisModal" tabindex="-1" aria-hidden="true">
+                                 <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                       <div class="modal-header">
+                                          <h5 class="modal-title">Análisis de Portafolio</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                             aria-label="Cerrar"></button>
                                        </div>
-                                       <div class="header-title">
-                                          <p class="fs-6">Vender</p>
+                                       <div class="modal-body">
+                                          <div id="analisisContenido">
+                                             <p>Cargando análisis...</p>
+                                          </div>
                                        </div>
-                                    </div>
-                                    <select class="form-select mb-3" aria-label="Ejemplo de select">
-                                       <option selected>
-                                          <a href="#" class="dropdown-item">
-                                             <img src="../assets/images/coins/01.png"
-                                                class="img-fluid avatar avatar-30 avatar-rounded" alt="img71"> 561,511
-                                             BTC
-                                          </a>
-                                       </option>
-                                       <option>
-                                          <li>
-                                             <a href="#" class="dropdown-item">
-                                                <img src="../assets/images/coins/01.png"
-                                                   class="img-fluid avatar avatar-30 avatar-rounded" alt="img71">
-                                                561,511 BTC
-                                             </a>
-                                          </li>
-                                       </option>
-                                       <option>
-                                          <li>
-                                             <a href="#" class="dropdown-item">
-                                                <img src="../assets/images/coins/06.png"
-                                                   class="img-fluid avatar avatar-30 avatar-rounded" alt="img72">
-                                                561,511 LTC
-                                             </a>
-                                          </li>
-                                       </option>
-                                    </select>
-                                    <div class="d-flex justify-content-between">
-                                       <h6>Monto (USD)</h6>
-                                       <h6 class="mt-3 text-warning">USD</h6>
-                                    </div>
-                                    <p>$5.696,24</p>
-                                    <div class="d-flex justify-content-between">
-                                       <h6>Monto (BTC)</h6>
-                                       <h6 class="mt-3 text-warning">BTC</h6>
-                                    </div>
-                                    <p>$5.696,24</p>
-                                    <div class="d-grid">
-                                       <button class="btn btn-primary" type="button">Comprar BTC</button>
+                                       <div class="modal-footer">
+                                          <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                       </div>
                                     </div>
                                  </div>
                               </div>
-                           </ul>
+                           </div>
                         </div>
 
-                        <div class="dropdown">
-                           <button class="btn btn-primary w-100" type="button" id="dropdownMenuButton4"
-                              data-bs-toggle="dropdown" aria-expanded="false">
-                              + Agregar Cripto
+                        <div class="">
+                           <button class="btn btn-primary w-100" type="button" id="btnTransacciones"
+                              aria-expanded="false">
+                              Mis transacciones
                            </button>
-                           <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton4">
-                              <li><a href="#" class="dropdown-item">
-                                    <img src="../assets/images/coins/01.png"
-                                       class="img-fluid avatar avatar-30 avatar-rounded" alt="img71"> 561,511 BTC
-                                 </a>
-                              </li>
-                              <li><a href="#" class="dropdown-item">
-                                    <img src="../assets/images/coins/06.png"
-                                       class="img-fluid avatar avatar-30 avatar-rounded" alt="img72"> 561,511 LTC
-                                 </a>
-                              </li>
-                              <li><a href="#" class="dropdown-item">
-                                    <img src="../assets/images/coins/03.png"
-                                       class="img-fluid avatar avatar-30 avatar-rounded" alt="img73"> 561,511 ETH
-                                 </a>
-                              </li>
-                              <li><a href="#" class="dropdown-item">
-                                    <img src="../assets/images/coins/08.png"
-                                       class="img-fluid avatar avatar-30 avatar-rounded" alt="img74"> 561,511 XMR
-                                 </a>
-                              </li>
-                           </ul>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="modalTransacciones" tabindex="-1" aria-hidden="true">
+                           <div class="modal-dialog modal-lg modal-dialog-centered">
+                              <div class="modal-content">
+                                 <div class="modal-header bg-primary text-white">
+                                    <h5 class="modal-title">Mis transacciones</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                       aria-label="Cerrar"></button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <table class="table table-bordered table-striped" id="tablaTransacciones">
+                                       <thead class="table-dark">
+                                          <tr>
+                                             <th>ID</th>
+                                             <th>Activo</th>
+                                             <th>Tipo</th>
+                                             <th>Cantidad</th>
+                                             <th>Precio</th>
+                                             <th>Fecha</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <tr>
+                                             <td colspan="6" class="text-center">Selecciona un usuario para ver sus
+                                                transacciones</td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -842,7 +810,7 @@
                                           id="dropdownMenuButton5" data-bs-toggle="dropdown" aria-expanded="false">
                                           <img src="../assets/images/coins/01.png"
                                              class="img-fluid avatar avatar-30 avatar-rounded" alt="img5">
-                                          561.511 BTC
+                                          Selecciona
                                        </button>
                                        <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton5">
                                           <li><a href="#" class="dropdown-item" data-symbol="BTC"
@@ -946,19 +914,21 @@
             </div>
             <div class="col-lg-4">
                <div class="row">
+
+
                   <div class="col-lg-12">
                      <div class="card">
                         <div class="card-header">
                            <div class="input-group">
-                              <input type="text" class="form-control" placeholder="Escribe tu mensaje..."
-                                 style="font-size: 14px;">
-                              <button class="btn btn-primary" type="button">Enviar</button>
+                              <input type="text" class="form-control" id="txtPregunta"
+                                 placeholder="Escribe tu mensaje..." style="font-size: 14px;">
+                              <button class="btn btn-primary" id="btnMensaje" type="button">Enviar</button>
                            </div>
                         </div>
-                        <div class="card-body d-flex align-items-center justify-content-center"
-                           style="min-height: 200px;">
-                           <!-- Aquí se podrían mostrar los mensajes del chat -->
-                           <p class="text-muted">Tus mensajes aparecerán aquí...</p>
+                        <!-- Contenedor de mensajes con scroll -->
+                        <div class="card-body" id="messagesContainer"
+                           style="min-height: 200px; max-height: 400px; overflow-y: auto; display: flex; flex-direction: column;">
+                           <p id="placeholder" class="">Tus mensajes aparecerán aquí...</p>
                         </div>
                      </div>
                   </div>
@@ -982,7 +952,7 @@
                      <div class="card">
                         <div class="card-header d-flex justify-content-between flex-wrap">
                            <div class="header-title">
-                              <h4 class="card-title">Quick Transfer</h4>
+                              <h4 class="card-title">Transferencia rápida</h4>
                            </div>
                         </div>
                         <div class="card-body">
@@ -1009,7 +979,7 @@
                               </div>
                            </div>
                            <div class="input-group mb-4">
-                              <span class="input-group-text" id="basic-addon3">Amount</span>
+                              <span class="input-group-text" id="basic-addon3">Cantidad</span>
                               <input type="text" class="form-control col-lg-8" placeholder="126.5"
                                  aria-label="Recipient's username" aria-describedby="basic-addon3">
                            </div>
@@ -1022,7 +992,7 @@
                                           d="M8.74074 8.25926L2 6.7037L16 1M8.74074 8.25926L10.8148 15L16 1M8.74074 8.25926L16 1"
                                           stroke="white" />
                                     </svg>
-                                    <span class="ms-2">Transfer Now</span>
+                                    <span class="ms-2">Transferir ahora</span>
                                  </button>
                               </div>
                            </div>
@@ -1033,17 +1003,17 @@
                      <div class="card">
                         <div class="card-header d-flex justify-content-between flex-wrap">
                            <div class="header-title">
-                              <h4 class="card-title">Earnings</h4>
+                              <h4 class="card-title">Ganancias</h4>
                            </div>
                            <div class="dropdown">
                               <a href="#" class="btn btn-soft-secondary btn-sm dropdown-toggle" id="dropdownMenuButton1"
                                  data-bs-toggle="dropdown" aria-expanded="false">
-                                 This Week
+                                 Esta semana
                               </a>
                               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                                 <li><a class="dropdown-item" href="#">This Week</a></li>
-                                 <li><a class="dropdown-item" href="#">This Month</a></li>
-                                 <li><a class="dropdown-item" href="#">This Year</a></li>
+                                 <li><a class="dropdown-item" href="#">Esta Semana</a></li>
+                                 <li><a class="dropdown-item" href="#">Este Mes</a></li>
+                                 <li><a class="dropdown-item" href="#">Este anio</a></li>
                               </ul>
                            </div>
                         </div>
@@ -1101,7 +1071,7 @@
                         d="M15.85 2.50065C16.481 2.50065 17.111 2.58965 17.71 2.79065C21.401 3.99065 22.731 8.04065 21.62 11.5806C20.99 13.3896 19.96 15.0406 18.611 16.3896C16.68 18.2596 14.561 19.9196 12.28 21.3496L12.03 21.5006L11.77 21.3396C9.48102 19.9196 7.35002 18.2596 5.40102 16.3796C4.06102 15.0306 3.03002 13.3896 2.39002 11.5806C1.26002 8.04065 2.59002 3.99065 6.32102 2.76965C6.61102 2.66965 6.91002 2.59965 7.21002 2.56065H7.33002C7.61102 2.51965 7.89002 2.50065 8.17002 2.50065H8.28002C8.91002 2.51965 9.52002 2.62965 10.111 2.83065H10.17C10.21 2.84965 10.24 2.87065 10.26 2.88965C10.481 2.96065 10.69 3.04065 10.89 3.15065L11.27 3.32065C11.3618 3.36962 11.4649 3.44445 11.554 3.50912C11.6104 3.55009 11.6612 3.58699 11.7 3.61065C11.7163 3.62028 11.7329 3.62996 11.7496 3.63972C11.8354 3.68977 11.9247 3.74191 12 3.79965C13.111 2.95065 14.46 2.49065 15.85 2.50065ZM18.51 9.70065C18.92 9.68965 19.27 9.36065 19.3 8.93965V8.82065C19.33 7.41965 18.481 6.15065 17.19 5.66065C16.78 5.51965 16.33 5.74065 16.18 6.16065C16.04 6.58065 16.26 7.04065 16.68 7.18965C17.321 7.42965 17.75 8.06065 17.75 8.75965V8.79065C17.731 9.01965 17.8 9.24065 17.94 9.41065C18.08 9.58065 18.29 9.67965 18.51 9.70065Z"
                         fill="currentColor"></path>
                   </svg>
-               </span> by <a href="https://iqonic.design/">IQONIC Design</a>.
+               </span> by <a href=""></a>.
             </div>
          </div>
       </footer>
@@ -1482,16 +1452,30 @@
       const addonMoneda = document.getElementById("basic-addon3");
 
       // Selección de moneda desde dropdown
+      // Selección de moneda desde dropdown
       dropdownItems.forEach(item => {
          item.addEventListener("click", (e) => {
             e.preventDefault();
-            monedaSeleccionada = item.getAttribute("data-symbol");
-            monedaImg = item.getAttribute("data-img");
-            dropdownBtn.innerHTML = `<img src="../assets/images/coins/${monedaImg}" class="img-fluid avatar avatar-30 avatar-rounded"> ${balance[monedaSeleccionada].toFixed(3)} ${monedaSeleccionada}`;
+
+            // Si no tiene data-symbol o data-img, usar valores por defecto
+            monedaSeleccionada = item.getAttribute("data-symbol") || "USD";   // 👈 por defecto USD
+            monedaImg = item.getAttribute("data-img") || "01.png";            // 👈 por defecto 01.png
+
+            // Validar balance (evita error si no existe la clave en balance)
+            const valor = balance && balance[monedaSeleccionada]
+               ? balance[monedaSeleccionada]
+               : 0;
+
+            dropdownBtn.innerHTML = `
+      <img src="../assets/images/coins/${monedaImg}" 
+           class="img-fluid avatar avatar-30 avatar-rounded"> 
+      ${Number(valor).toFixed(3)} ${monedaSeleccionada}
+    `;
+
             addonMoneda.textContent = monedaSeleccionada;
-            inputEnviar.value = inputRecibir.value = inputTotal.value = "";
          });
       });
+
 
       // Calcular total y BPL al escribir cantidad
       inputEnviar.addEventListener("input", () => {
@@ -1501,63 +1485,9 @@
          inputTotal.value = total.toFixed(6);
       });
 
-      // Comprar
-      btnComprar.addEventListener("click", () => {
-         const cantidad = parseFloat(inputEnviar.value) || 0;
-         const total = parseFloat(inputTotal.value) || 0;
 
-         if (balance.BPL < total) {
-            Swal.fire({
-               icon: "error",
-               title: "Fondos insuficientes",
-               text: "No tienes suficiente BPL para comprar.",
-            });
-            return;
-         }
 
-         balance[monedaSeleccionada] += cantidad;
-         balance.BPL -= total;
 
-         Swal.fire({
-            icon: "success",
-            title: "Compra realizada",
-            html: `Compraste <b>${cantidad}</b> ${monedaSeleccionada}.<br>
-             Balance: <b>${balance[monedaSeleccionada].toFixed(6)} ${monedaSeleccionada}</b>, 
-             BPL: <b>${balance.BPL.toFixed(2)}</b>`,
-         });
-
-         dropdownBtn.innerHTML = `<img src="../assets/images/coins/${monedaImg}" class="img-fluid avatar avatar-30 avatar-rounded"> ${balance[monedaSeleccionada].toFixed(3)} ${monedaSeleccionada}`;
-         inputEnviar.value = inputRecibir.value = inputTotal.value = "";
-      });
-
-      // Vender
-      btnVender.addEventListener("click", () => {
-         const cantidad = parseFloat(inputEnviar.value) || 0;
-         const total = parseFloat(inputTotal.value) || 0;
-
-         if (balance[monedaSeleccionada] < cantidad) {
-            Swal.fire({
-               icon: "error",
-               title: "Fondos insuficientes",
-               text: `No tienes suficiente ${monedaSeleccionada} para vender.`,
-            });
-            return;
-         }
-
-         balance[monedaSeleccionada] -= cantidad;
-         balance.BPL += total;
-
-         Swal.fire({
-            icon: "success",
-            title: "Venta realizada",
-            html: `Vendiste <b>${cantidad}</b> ${monedaSeleccionada}.<br>
-             Balance: <b>${balance[monedaSeleccionada].toFixed(6)} ${monedaSeleccionada}</b>, 
-             BPL: <b>${balance.BPL.toFixed(2)}</b>`,
-         });
-
-         dropdownBtn.innerHTML = `<img src="../assets/images/coins/${monedaImg}" class="img-fluid avatar avatar-30 avatar-rounded"> ${balance[monedaSeleccionada].toFixed(3)} ${monedaSeleccionada}`;
-         inputEnviar.value = inputRecibir.value = inputTotal.value = "";
-      });
 
 
 
@@ -1636,11 +1566,386 @@
 
       cargarTabla();
 
+
+      const input = document.getElementById("txtPregunta");
+      const button = document.getElementById("btnMensaje");
+      const messagesContainer = document.getElementById("messagesContainer");
+      const placeholder = document.getElementById("placeholder");
+
+      // función para agregar mensajes al chat
+      function addMessage(content, sender = "user") {
+         if (placeholder) placeholder.remove(); // quitar texto inicial
+
+         const bubble = document.createElement("div");
+         bubble.style.margin = "6px 0";
+         bubble.style.padding = "8px 12px";
+         bubble.style.borderRadius = "12px";
+         bubble.style.maxWidth = "75%";
+         bubble.style.wordWrap = "break-word";
+
+         if (sender === "user") {
+            bubble.className = "ms-auto text-primary";
+            bubble.style.alignSelf = "flex-end";
+            bubble.style.backgroundColor = "#e8f0fe";
+            bubble.textContent = "🙋‍♂️ Tú: " + content;
+         } else {
+            bubble.className = "me-auto text-dark";
+            bubble.style.alignSelf = "flex-start";
+            bubble.style.backgroundColor = "#f8f9fa";
+            bubble.textContent = "🤖 Bot: " + content;
+         }
+
+         messagesContainer.appendChild(bubble);
+         messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+
+      async function sendMessage() {
+         const userMessage = input.value.trim();
+         if (!userMessage) return;
+
+         console.log("👉 Enviando mensaje:", userMessage);
+
+         // mostrar mensaje del usuario
+         addMessage(userMessage, "user");
+         input.value = "";
+
+         // mensaje temporal mientras responde el backend
+         const thinkingBubble = document.createElement("div");
+         thinkingBubble.style.margin = "6px 0";
+         thinkingBubble.style.padding = "8px 12px";
+         thinkingBubble.style.borderRadius = "12px";
+         thinkingBubble.style.maxWidth = "75%";
+         thinkingBubble.style.backgroundColor = "#fff3cd";
+         thinkingBubble.textContent = "🤖 pensando...";
+         messagesContainer.appendChild(thinkingBubble);
+         messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+         try {
+            const res = await fetch("http://localhost:4000/api/chat", {
+               method: "POST",
+               headers: { "Content-Type": "application/json" },
+               body: JSON.stringify({ message: userMessage }),
+            });
+
+            const data = await res.json();
+            console.log("👉 Respuesta backend:", data);
+
+            // eliminar burbuja de "pensando..."
+            messagesContainer.removeChild(thinkingBubble);
+
+            // usar la respuesta correcta del backend
+            if (data.message && data.message.content) {
+               addMessage(data.message.content, "bot");
+            } else if (data.reply) {
+               addMessage(data.reply, "bot");
+            } else {
+               addMessage("⚠️ No recibí respuesta del modelo", "bot");
+            }
+         } catch (err) {
+            console.error(err);
+            messagesContainer.removeChild(thinkingBubble);
+            addMessage("⚠️ Error al conectar con el servidor", "bot");
+         }
+      }
+
+      // click en botón
+      button.addEventListener("click", sendMessage);
+
+      // enviar con Enter
+      input.addEventListener("keypress", (e) => {
+         if (e.key === "Enter") {
+            e.preventDefault();
+            sendMessage();
+         }
+      });
+
+
+
+      let activoSeleccionado = "BTC"; // Por defecto
+
+      document.querySelectorAll(".dropdown-item").forEach(item => {
+         item.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            // Validar atributos
+            const activoSeleccionado = item.dataset.symbol || "USD";   // 👈 valor por defecto
+            const imgSeleccionada = item.dataset.img || "01.png";      // 👈 valor por defecto
+
+            // Obtener elementos destino
+            const dropdownBtn = document.querySelector("#dropdownMenuButton5");
+            const addonMoneda = document.querySelector("#basic-addon3");
+
+            if (dropdownBtn) {
+               dropdownBtn.innerHTML = `
+        <img src="../assets/images/coins/${imgSeleccionada}" 
+             class="img-fluid avatar avatar-30 avatar-rounded" alt="img"> 
+        ${activoSeleccionado}
+      `;
+            } else {
+               console.warn("⚠️ No se encontró #dropdownMenuButton5 en el DOM");
+            }
+
+            if (addonMoneda) {
+               addonMoneda.innerText = activoSeleccionado;
+            } else {
+               console.warn("⚠️ No se encontró #basic-addon3 en el DOM");
+            }
+         });
+      });
+
+
+      // acción comprar
+      document.getElementById("btnComprar").addEventListener("click", async () => {
+         const cantidad = parseFloat(document.getElementById("inputEnviar").value);
+         const usuario_id = localStorage.getItem("usuarioId"); // ← tomar del localStorage
+         const tipo = "COMPRA";
+         const precio_unitario = 25000; // Ejemplo, lo puedes calcular dinámico o traer de API
+
+         if (!cantidad || cantidad <= 0) {
+            Swal.fire("⚠️ Atención", "Ingresa una cantidad válida", "warning");
+            return;
+         }
+
+         const body = {
+            usuario_id,
+            activo: activoSeleccionado,
+            tipo,
+            cantidad,
+            precio_unitario
+         };
+
+         const res = await fetch("http://localhost:4000/api/transacciones", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+         });
+
+         const data = await res.json();
+         if (data.success) {
+            Swal.fire("✅ Compra exitosa", `Se registró la compra de ${cantidad} ${activoSeleccionado}`, "success");
+            document.getElementById("inputEnviar").value = "";
+         } else {
+            Swal.fire("❌ Error", data.error, "error");
+         }
+      });
+
+      // acción vender
+      document.getElementById("btnVender").addEventListener("click", async () => {
+         const cantidad = parseFloat(document.getElementById("inputEnviar").value);
+         const usuario_id = localStorage.getItem("usuarioId"); // ← tomar del localStorage
+         const tipo = "VENTA";
+         const precio_unitario = 25000;
+
+         if (!cantidad || cantidad <= 0) {
+            Swal.fire("⚠️ Atención", "Ingresa una cantidad válida", "warning");
+            return;
+         }
+
+         const body = {
+            usuario_id,
+            activo: activoSeleccionado,
+            tipo,
+            cantidad,
+            precio_unitario
+         };
+
+         const res = await fetch("http://localhost:4000/api/transacciones", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+         });
+
+         const data = await res.json();
+         if (data.success) {
+            Swal.fire("✅ Venta exitosa", `Se registró la venta de ${cantidad} ${activoSeleccionado}`, "success");
+            document.getElementById("inputEnviar").value = "";
+         } else {
+            Swal.fire("❌ Error", data.error, "error");
+         }
+      });
+
+      document.getElementById("analizarBtn").addEventListener("click", async () => {
+         try {
+            //  Recuperar usuario logueado del localStorage
+            const usuario = localStorage.getItem("usuarioId");
+            if (!usuario) {
+               alert("No se encontró usuario logueado");
+               return;
+            }
+
+            // Mostrar modal con spinner de cargando
+            const modal = new bootstrap.Modal(document.getElementById("analisisModal"));
+            document.getElementById("analisisContenido").innerHTML = `
+      <div class="text-center my-3">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p class="mt-2">Analizando portafolio...</p>
+      </div>
+    `;
+            modal.show();
+
+            //  Llamada al backend
+            const res = await fetch("http://localhost:4000/api/analizar-portafolio", {
+               method: "POST",
+               headers: { "Content-Type": "application/json" },
+               body: JSON.stringify({ usuarioId: usuario })
+            });
+
+            const data = await res.json();
+
+            // ⚡ Renderizar datos en el modal
+            let html = `
+      <h6>📊 Rendimiento:</h6>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>Activo</th>
+              <th>Cantidad</th>
+              <th>Precio Promedio</th>
+              <th>Precio Actual</th>
+              <th>Valor Invertido</th>
+              <th>Valor Actual</th>
+              <th>Ganancia</th>
+              <th>%</th>
+            </tr>
+          </thead>
+          <tbody>
+    `;
+
+            let totalInvertido = 0;
+            let totalActual = 0;
+
+            data.rendimiento.forEach(r => {
+               totalInvertido += Number(r.valorInvertido);
+               totalActual += Number(r.valorActual);
+
+               html += `
+        <tr>
+          <td>${r.activo}</td>
+          <td>${r.cantidad}</td>
+          <td>$${Number(r.precioPromedio).toLocaleString()}</td>
+          <td>$${Number(r.precioActual).toLocaleString()}</td>
+          <td>$${Number(r.valorInvertido).toLocaleString()}</td>
+          <td>$${Number(r.valorActual).toLocaleString()}</td>
+          <td class="${r.ganancia >= 0 ? "text-success" : "text-danger"}">
+            $${Number(r.ganancia).toLocaleString()}
+          </td>
+          <td class="${r.ganancia >= 0 ? "text-success" : "text-danger"}">
+            ${r.porcentaje}
+          </td>
+        </tr>
+      `;
+            });
+
+            //  Cálculo del total
+            const totalGanancia = totalActual - totalInvertido;
+            const totalPorcentaje = totalInvertido > 0 ? ((totalGanancia / totalInvertido) * 100).toFixed(2) : 0;
+
+            html += `
+        <tr class="fw-bold table-info">
+          <td>Total</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>$${totalInvertido.toLocaleString()}</td>
+          <td>$${totalActual.toLocaleString()}</td>
+          <td class="${totalGanancia >= 0 ? "text-success" : "text-danger"}">
+            $${totalGanancia.toLocaleString()}
+          </td>
+          <td class="${totalGanancia >= 0 ? "text-success" : "text-danger"}">
+            ${totalPorcentaje}%
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h6 class="mt-3">🤖 Análisis:</h6>
+  <p>${data.analisis}</p>
+`;
+
+            document.getElementById("analisisContenido").innerHTML = html;
+
+         } catch (err) {
+            console.error("❌ Error:", err);
+            document.getElementById("analisisContenido").innerHTML =
+               "<p class='text-danger'>❌ Error al obtener el análisis del portafolio.</p>";
+            const modal = new bootstrap.Modal(document.getElementById("analisisModal"));
+            modal.show();
+         }
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+         const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+         if (usuario) {
+            // Nombre en mayúsculas con saludo
+            document.querySelector(".caption-title").textContent =
+               "¡HOLA! " + usuario.nombre.toUpperCase();
+
+            // Rol traducido
+            const rolTexto = usuario.rol === 1 ? "ADMINISTRADOR" : "USUARIO";
+            document.querySelector(".caption-sub-title").textContent = rolTexto;
+         }
+      });
+
+
+      document.getElementById("btnTransacciones").addEventListener("click", async () => {
+         const usuario = JSON.parse(localStorage.getItem("usuario"));
+         const userId = usuario ? usuario.id : null;
+
+         if (!userId) {
+            Swal.fire({
+               icon: 'warning',
+               title: 'No se encontró el usuario en sesión',
+               text: 'Por favor inicia sesión de nuevo',
+               toast: true,
+               position: 'top-end',
+               timer: 3000,
+               showConfirmButton: false
+            });
+            return;
+         }
+
+         try {
+            const res = await fetch(`http://localhost:4000/transacciones/${userId}`);
+            const data = await res.json();
+
+            const tbody = document.querySelector("#tablaTransacciones tbody");
+            tbody.innerHTML = "";
+
+            if (Array.isArray(data) && data.length > 0) {
+               data.forEach(tx => {
+                  const row = document.createElement("tr");
+                  row.innerHTML = `
+                    <td>${tx.id_transaccion}</td>
+                    <td>${tx.activo}</td>
+                    <td>${tx.tipo}</td>
+                    <td>${tx.cantidad}</td>
+                 <td>${tx.precio_unitario ? Number(tx.precio_unitario).toFixed(2) : "0.00"}</td>
+                    <td>${new Date(tx.fecha).toLocaleString()}</td>
+                `;
+                  tbody.appendChild(row);
+               });
+            } else {
+               tbody.innerHTML = `<tr><td colspan="6" class="text-center">No hay transacciones registradas</td></tr>`;
+            }
+
+            // Mostrar el modal
+            const modal = new bootstrap.Modal(document.getElementById("modalTransacciones"));
+            modal.show();
+         } catch (err) {
+            console.error("Error al obtener transacciones:", err);
+            Swal.fire({
+               icon: 'error',
+               title: 'Error de conexión',
+               text: 'No se pudieron cargar las transacciones 🚨'
+            });
+         }
+      });
+
+
+
    </script>
-
-
-
-
 
 
 </body>

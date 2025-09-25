@@ -62,7 +62,7 @@
                                         stroke-linejoin="round"></path>
                                 </svg>
                             </i>
-                            <span class="item-name">Dashboard</span>
+                            <span class="item-name">Panel De Control</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -99,7 +99,7 @@
                                         </svg>
                                     </i>
                                     <i class="sidenav-mini-icon"> U </i>
-                                    <span class="item-name">User Profile</span>
+                                    <span class="item-name">Perfil Usuario</span>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -111,7 +111,7 @@
                                         </svg>
                                     </i>
                                     <i class="sidenav-mini-icon"> U </i>
-                                    <span class="item-name">User Edit</span>
+                                    <span class="item-name">Editar Usuarios</span>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -123,7 +123,7 @@
                                         </svg>
                                     </i>
                                     <i class="sidenav-mini-icon"> U </i>
-                                    <span class="item-name">User List</span>
+                                    <span class="item-name">Lista De Usuarios</span>
                                 </a>
                             </li>
                         </ul>
@@ -277,8 +277,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " target="_blank"
-                            href="https://templates.iqonic.design/coinex/documentation/html/dist/main/">
+                        <a class="nav-link " target="_blank" href="#">
                             <i class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -290,19 +289,6 @@
                         </a>
                     </li>
                 </ul>
-            </div>
-            <div id="sidebar-footer" class="position-relative sidebar-footer">
-                <div class="card mx-4">
-                    <div class="card-body">
-                        <div class="sidebarbottom-content">
-                            <div class="image">
-                                <img src="../../assets/images/coins/13.png" alt="User-Profile" class="img-fluid">
-                            </div>
-                            <p class="mb-0">Be more secure with Pro Feature</p>
-                            <button type="button" class="btn btn-primary mt-3">Upgrade Now</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </aside>
@@ -322,7 +308,7 @@
                         </i>
                     </div>
                     <h4 class="title">
-                        Dashboard
+                        Panel De Control
                     </h4>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -552,14 +538,6 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label">User Role:</label>
-                                        <select name="type" class="selectpicker form-control" data-style="py-0">
-                                            <option>Select</option>
-                                            <option>Administrador</option>
-                                            <option>Usuario</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
                                         <label class="form-label" for="furl">Facebook Url:</label>
                                         <input type="text" class="form-control" id="furl" placeholder="Facebook Url">
                                     </div>
@@ -584,43 +562,60 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="header-title">
-                                    <h4 class="card-title">New User Information</h4>
+                                    <h4 class="card-title">Informacion De Usuario</h4>
                                 </div>
+                                <div class="d-flex align-items-center">
+                                    <!-- Select con usuarios -->
+                                    <select id="selectUsuario" class="form-select form-select-sm me-2"
+                                        style="width: auto;">
+                                        <option selected disabled>Seleccionar usuario</option>
+                                    </select>
+
+                                    <!-- Botones -->
+                                    <button type="button" id="btnActualizar" class="btn btn-sm btn-warning" disabled>✏️
+                                        Editar</button>
+
+
+                                    <button class="btn btn-sm btn-danger" id="btnEliminar" disabled>
+                                        🗑️ Eliminar
+                                    </button>
+                                </div>
+
                             </div>
                             <div class="card-body">
                                 <div class="new-user-info">
                                     <form id="form-usuario">
                                         <div class="row">
                                             <div class="form-group col-md-6">
-                                                <label class="form-label" for="fname">First Name:</label>
+                                                <label class="form-label" for="fname">Nombres:</label>
                                                 <input type="text" class="form-control" id="fname" name="nombres"
-                                                    placeholder="First Name" required>
+                                                    placeholder="Nombres" required>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label class="form-label" for="lname">Last Name:</label>
+                                                <label class="form-label" for="lname">Apellidos:</label>
                                                 <input type="text" class="form-control" id="lname" name="apellidos"
-                                                    placeholder="Last Name" required>
+                                                    placeholder="Apellidos" required>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label class="form-label" for="add1">Street Address 1:</label>
+                                                <label class="form-label" for="add1">Dirección 1:</label>
                                                 <input type="text" class="form-control" id="add1" name="direccion"
-                                                    placeholder="Street Address 1">
+                                                    placeholder="Dirección 1">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label class="form-label" for="add2">Street Address 2:</label>
+                                                <label class="form-label" for="add2">Dirección 2:</label>
                                                 <input type="text" class="form-control" id="add2" name="direccion2"
-                                                    placeholder="Street Address 2">
+                                                    placeholder="Dirección 2">
                                             </div>
                                             <div class="form-group col-md-12">
-                                                <label class="form-label" for="cname">Company Name:</label>
+                                                <label class="form-label" for="cname">Nombre de la Empresa:</label>
                                                 <input type="text" class="form-control" id="cname" name="empresa"
-                                                    placeholder="Company Name">
+                                                    placeholder="Nombre de la Empresa">
                                             </div>
                                             <div class="form-group col-sm-12">
-                                                <label class="form-label">Country:</label>
+                                                <label class="form-label">País:</label>
                                                 <select name="pais" id="country" class="selectpicker form-control"
                                                     data-style="py-0" required>
-                                                    <option value="">Select Country</option>
+                                                    <option value="">Selecciona un país</option>
                                                     <option value="Canadá">Canadá</option>
                                                     <option value="México">México</option>
                                                     <option value="USA">USA</option>
@@ -631,49 +626,49 @@
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label class="form-label" for="mobno">Mobile Number:</label>
+                                                <label class="form-label" for="mobno">Teléfono Móvil:</label>
                                                 <input type="text" class="form-control" id="mobno" name="telefono1"
-                                                    placeholder="Mobile Number" required>
+                                                    placeholder="Teléfono Móvil" required>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label class="form-label" for="altconno">Alternate Contact:</label>
+                                                <label class="form-label" for="altconno">Teléfono Alterno:</label>
                                                 <input type="text" class="form-control" id="altconno" name="telefono2"
-                                                    placeholder="Alternate Contact">
+                                                    placeholder="Teléfono Alterno">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label class="form-label" for="email">Email:</label>
+                                                <label class="form-label" for="email">Correo Electrónico:</label>
                                                 <input type="email" class="form-control" id="email"
-                                                    name="correo_electronico" placeholder="Email" required>
+                                                    name="correo_electronico" placeholder="Correo Electrónico" required>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label class="form-label" for="pno">Pin Code:</label>
+                                                <label class="form-label" for="pno">Código Postal:</label>
                                                 <input type="text" class="form-control" id="pno" name="codigo_postal"
-                                                    placeholder="Pin Code">
+                                                    placeholder="Código Postal">
                                             </div>
                                             <div class="form-group col-md-12">
-                                                <label class="form-label" for="city">Town/City:</label>
+                                                <label class="form-label" for="city">Ciudad:</label>
                                                 <input type="text" class="form-control" id="city" name="ciudad"
-                                                    placeholder="Town/City" required>
+                                                    placeholder="Ciudad" required>
                                             </div>
                                         </div>
 
                                         <hr>
-                                        <h5 class="mb-3">Security</h5>
+                                        <h5 class="mb-3">Seguridad</h5>
                                         <div class="row">
                                             <div class="form-group col-md-12">
-                                                <label class="form-label" for="uname">User Name:</label>
+                                                <label class="form-label" for="uname">Nombre de Usuario:</label>
                                                 <input type="text" class="form-control" id="uname" name="username"
-                                                    placeholder="User Name" required>
+                                                    placeholder="Nombre de Usuario" required>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label class="form-label" for="pass">Password:</label>
+                                                <label class="form-label" for="pass">Contraseña:</label>
                                                 <input type="password" class="form-control" id="pass" name="contrasena"
-                                                    placeholder="Password" required>
+                                                    placeholder="Contraseña" required>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label class="form-label" for="rpass">Repeat Password:</label>
+                                                <label class="form-label" for="rpass">Repite la Contraseña:</label>
                                                 <input type="password" class="form-control" id="rpass"
-                                                    placeholder="Repeat Password " required>
+                                                    placeholder="Repite la Contraseña" required>
                                             </div>
                                         </div>
 
@@ -693,8 +688,10 @@
                                             </label>
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary mt-3">Add New User</button>
+                                        <button type="submit" class="btn btn-primary mt-3">Agregar Nuevo
+                                            Usuario</button>
                                     </form>
+
 
                                     <div id="msg" class="mt-3"></div>
 
@@ -731,6 +728,9 @@
     <!-- Wrapper End-->
     <!-- offcanvas start -->
 
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
     <!-- Backend Bundle JavaScript -->
     <script src="../../assets/js/libs.min.js"></script>
     <!-- widgetchart JavaScript -->
@@ -759,6 +759,11 @@
 
             data.id_rol = parseInt(data.id_rol);
             data.estado_activo = data.estado_activo === "on"; // checkbox
+            data.url_facebook = document.getElementById("furl").value;
+            data.url_twitter = document.getElementById("turl").value;
+            data.url_instagram = document.getElementById("instaurl").value;
+            data.url_linkedin = document.getElementById("lurl").value;
+            console.log("Datos a enviar:", data);
 
             try {
                 const res = await fetch("http://localhost:4000/usuarios", {
@@ -781,6 +786,255 @@
                 document.getElementById("msg").innerHTML = `<div class="alert alert-danger">Error en la conexión 🚨</div>`;
             }
         });
+
+        // Cargar lista de usuarios en el select
+        async function cargarUsuarios() {
+            try {
+                const res = await fetch("http://localhost:4000/usuarios-select");
+                const data = await res.json();
+
+                const usuariosData = Array.isArray(data) ? data : data.rows;
+                console.log("Usuarios cargados:", usuariosData);
+
+                const select = document.getElementById("selectUsuario");
+                select.innerHTML = `<option value="">-- Selecciona un usuario --</option>`;
+
+                usuariosData.forEach(usuario => {
+                    const option = document.createElement("option");
+                    option.value = usuario.id_usuario; // 👈 ID del usuario
+                    option.textContent = `${usuario.nombre} ${usuario.apellido}`;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Error al cargar usuarios:", error);
+            }
+        }
+
+        // Cuando selecciono un usuario, cargo su información
+        document.getElementById("selectUsuario").addEventListener("change", async (e) => {
+            const userId = document.getElementById("selectUsuario").value;
+            if (!userId) return;
+
+            try {
+                const res = await fetch(`http://localhost:4000/usuarios/${userId}`);
+                const usuario = await res.json();
+
+                console.log("Usuario seleccionado:", usuario);
+
+                // Precargar datos en los campos del formulario
+                document.getElementById("fname").value = usuario.nombres || "";
+                document.getElementById("lname").value = usuario.apellidos || "";
+                document.getElementById("add1").value = usuario.direccion1 || "";
+                document.getElementById("add2").value = usuario.direccion2 || "";
+                document.getElementById("cname").value = usuario.nombre_empresa || "";
+                document.getElementById("country").value = usuario.pais || "";
+                document.getElementById("mobno").value = usuario.telefono_movil || "";
+                document.getElementById("altconno").value = usuario.contacto_alterno || "";
+                document.getElementById("email").value = usuario.correo_electronico || "";
+                document.getElementById("pno").value = usuario.codigo_postal || "";
+                document.getElementById("city").value = usuario.ciudad || "";
+                document.getElementById("uname").value = usuario.nombre_usuario || "";
+                document.getElementById("rol").value = usuario.id_rol || "2";
+                document.querySelector("[name='estado_activo']").checked = usuario.habilitar_doble_autenticacion || false;
+                document.getElementById("furl").value = usuario.facebook_url || "";
+                document.getElementById("turl").value = usuario.twitter_url || "";
+                document.getElementById("instaurl").value = usuario.instagram_url || "";
+                document.getElementById("lurl").value = usuario.linkedin_url || "";
+
+
+
+
+                //  Las contraseñas NO se deben precargar por seguridad
+                document.getElementById("pass").value = "";
+                document.getElementById("rpass").value = "";
+            } catch (error) {
+                console.error("Error al obtener usuario:", error);
+            }
+        });
+
+        // Ejecuta la carga inicial
+        cargarUsuarios();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+            if (usuario) {
+                // Nombre en mayúsculas con saludo
+                document.querySelector(".caption-title").textContent =
+                    "¡HOLA! " + usuario.nombre.toUpperCase();
+
+                // Rol traducido
+                const rolTexto = usuario.rol === 1 ? "ADMINISTRADOR" : "USUARIO";
+                document.querySelector(".caption-sub-title").textContent = rolTexto;
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const selectUsuario = document.getElementById("selectUsuario");
+            const btnEliminar = document.getElementById("btnEliminar");
+            const formUsuario = document.getElementById("form-usuario");
+
+            // Habilitar/deshabilitar el botón según selección
+            selectUsuario.addEventListener("change", () => {
+                btnEliminar.disabled = !selectUsuario.value;
+            });
+
+            // Acción de eliminar con SweetAlert2
+            btnEliminar.addEventListener("click", async () => {
+                const userId = selectUsuario.value;
+                if (!userId) {
+                    Swal.fire({ icon: 'warning', title: 'Selecciona un usuario' });
+                    return;
+                }
+
+                const confirmResult = await Swal.fire({
+                    title: '¿Eliminar usuario?',
+                    text: 'Esta acción no se puede deshacer. ¿Deseas continuar?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonColor: '#d33',
+                    reverseButtons: true,
+                });
+
+                if (confirmResult.isConfirmed) {
+                    // Desactivar UI mientras se procesa
+                    btnEliminar.disabled = true;
+                    selectUsuario.disabled = true;
+
+                    try {
+                        const res = await fetch(`http://localhost:4000/usuarios-eliminar/${userId}`, {
+                            method: "DELETE",
+                            headers: { "Content-Type": "application/json" },
+                        });
+
+                        if (res.ok) {
+                            const data = await res.json();
+
+                            // Quitar opción del select
+                            const opt = selectUsuario.querySelector(`option[value="${userId}"]`);
+                            if (opt) opt.remove();
+
+                            // Resetear selección
+                            selectUsuario.value = "";
+                            btnEliminar.disabled = true;
+
+                            // Limpiar formulario
+                            formUsuario.reset();
+
+                            // Toast de éxito
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'success',
+                                title: data.mensaje || 'Usuario eliminado',
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+
+                        } else {
+                            let errMsg = "Error al eliminar usuario";
+                            try {
+                                const errJson = await res.json();
+                                errMsg = errJson.mensaje || errJson.error || errMsg;
+                            } catch (e) { /* ignore */ }
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'No se pudo eliminar',
+                                text: errMsg,
+                            });
+                        }
+                    } catch (err) {
+                        console.error("Error eliminando usuario:", err);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error de conexión',
+                            text: 'No se pudo conectar con el servidor. Intenta de nuevo.',
+                        });
+                    } finally {
+                        // Reactivar el select al final
+                        selectUsuario.disabled = false;
+                        btnEliminar.disabled = !selectUsuario.value;
+                    }
+                }
+            });
+
+            // Inicializar carga
+            cargarUsuarios();
+        });
+
+
+        const btnActualizar = document.getElementById("btnActualizar");
+        const formUsuario = document.getElementById("form-usuario");
+        const selectUsuario = document.getElementById("selectUsuario");
+
+        // Habilitar el botón cuando se selecciona usuario
+        selectUsuario.addEventListener("change", () => {
+            btnActualizar.disabled = !selectUsuario.value;
+        });
+
+        // Acción de actualizar
+        btnActualizar.addEventListener("click", async () => {
+            const userId = selectUsuario.value;
+            if (!userId) {
+                Swal.fire({ icon: "warning", title: "Selecciona un usuario" });
+                return;
+            }
+
+            const pass = document.getElementById("pass").value;
+            const rpass = document.getElementById("rpass").value;
+            if (pass !== rpass) {
+                document.getElementById("msg").innerHTML = `<div class="alert alert-danger">Las contraseñas no coinciden 🚨</div>`;
+                return;
+            }
+
+            const formData = new FormData(formUsuario);
+            const data = Object.fromEntries(formData);
+
+            data.id_rol = parseInt(data.id_rol);
+            data.estado_activo = data.estado_activo === "on";
+            data.url_facebook = document.getElementById("furl").value;
+            data.url_twitter = document.getElementById("turl").value;
+            data.url_instagram = document.getElementById("instaurl").value;
+            data.url_linkedin = document.getElementById("lurl").value;
+
+            try {
+                const res = await fetch(`http://localhost:4000/usuarios-actualizar/${userId}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await res.json();
+
+                if (res.ok) {
+                    Swal.fire({
+                        icon: "success",
+                        title: result.message,
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 2500,
+                    });
+                    formUsuario.reset();
+                    document.getElementById("furl").value =  "";
+                    document.getElementById("turl").value =  "";
+                    document.getElementById("instaurl").value = "";
+                    document.getElementById("lurl").value = "";
+                    cargarUsuarios();
+                } else {
+                    Swal.fire({ icon: "error", title: "Error", text: result.error });
+                }
+            } catch (err) {
+                console.error("Error al actualizar:", err);
+                Swal.fire({ icon: "error", title: "Error de conexión 🚨" });
+            }
+        });
+
+
+
     </script>
 
 </body>
