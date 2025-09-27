@@ -1,7 +1,7 @@
 // index.js
 const express = require("express");
 const cors = require("cors");
-const path = require("path");  
+const path = require("path");
 const session = require("express-session");
 require("dotenv").config();
 const pool = require("./db");
@@ -12,10 +12,11 @@ const axios = require("axios");
 const cryptoRoutes = require("./routes/cryptoRoutes");
 const UsuarioRepositoryFactory = require("./factories/UsuarioRepositoryFactory");
 const TransaccionRepository = require("./repositories/TransaccionRepository");
-const PortafolioRepositoryFactory = require("./factories/PortafolioRepositoryFactory");
 const portafolioRoutes = require("./routes/portafolioRoutes");
 const analisisRoutes = require("./routes/analisisRoutes");
 const historyRoutes = require("./routes/historyRoutes");
+const CryptoFetcherFactory = require("./fetchers/CryptoFetcherFactory");
+const ChatServiceFactory = require("./chat/ChatServiceFactory");
 
 // Middleware de autenticación
 const authMiddleware = require("./middlewares/authMiddleware");
@@ -47,7 +48,10 @@ app.use(session({
   secret: process.env.SESSION_SECRET || "mi_clave_secreta",
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false, maxAge: 1000 * 60 } // 1 minuto
+  cookie: {
+    secure: false,
+    maxAge: 1000 * 60
+  } // 1 minuto
 }));
 
 
@@ -68,13 +72,21 @@ app.get("/", (req, res) => {
 
 // Login
 app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+  const {
+    email,
+    password
+  } = req.body;
 
   const usuario = await usuarioRepo.login(email, password);
-  if (!usuario) return res.status(400).json({ error: "Usuario no encontrado" });
+  if (!usuario) return res.status(400).json({
+    error: "Usuario no encontrado"
+  });
 
-  req.session.usuarioId = usuario.id;  // guardar sesión
-  res.json({ message: "Login exitoso", usuario });  // front redirige a /dashboard
+  req.session.usuarioId = usuario.id; // guardar sesión
+  res.json({
+    message: "Login exitoso",
+    usuario
+  }); // front redirige a /dashboard
 });
 
 // Usuarios para select
@@ -291,75 +303,41 @@ app.get("/api/crypto/historyCard/:symbol", async (req, res) => {
 
 app.get("/api/data/dataTable", async (req, res) => {
   try {
-    const response = await axios.get("https://api.coinpaprika.com/v1/tickers");
-    // solo los primeros 5
-    const top5 = response.data.slice(0, 5);
+    const type = "COINPAPRIKA".toUpperCase(); // o "CMC", "MOCK", "HISTORY"
+    const fetcher = CryptoFetcherFactory.create(type);
 
-    res.json(top5);
+    let data;
+    if (typeof fetcher.fetchTop === "function") {
+      data = await fetcher.fetchTop(5);
+    } else if (typeof fetcher.getHistory === "function") {
+      data = await fetcher.getHistory(); // para CoinGeckoHistoryFetcher
+    } else {
+      throw new Error("Método de fetch no definido para este fetcher");
+    }
+
+    res.json(data);
   } catch (error) {
-    console.error("Error en CoinPaprika:", error.message);
+    console.error("Error en fetcher:", error.message);
     res.status(500).json({
-      error: "Error al obtener datos de CoinPaprika"
+      error: error.message
     });
   }
 });
 
 app.post("/api/chat", async (req, res) => {
   try {
-    const {
-      message
-    } = req.body;
-    console.log("👉 Mensaje recibido:", message);
+    const { message, type = "OLLAMA" } = req.body; 
+    const chatService = ChatServiceFactory.create(type);
 
-    const response = await fetch("http://localhost:11434/api/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        model: "deepseek-r1:1.5b",
-        stream: false,
-        messages: [{
-            role: "system",
-            content: `
-Eres un experto en criptomonedas. 
-Responde siempre en español, de manera clara, concisa y didáctica. 
-No uses bloques <think>, ni inglés, ni otros idiomas. SIEMPRE responde en español.
-Puedes saludar y responder preguntas generales, pero dirige siempre la conversación hacia criptomonedas y finanzas digitales.
+    const reply = await chatService.sendMessage(message);
 
-`
-          },
-          {
-            role: "user",
-            content: message
-          },
-        ],
-      }),
-    });
-
-    const data = await response.json();
-    console.log("👉 Respuesta cruda de Ollama:", JSON.stringify(data, null, 2));
-
-    // obtengo la respuesta del modelo
-    let reply = data.message?.content || "No se pudo interpretar la respuesta";
-
-    // 🧹 limpiar cualquier bloque <think> o texto raro
-    reply = reply.replace(/<think>[\s\S]*?<\/think>/gi, "");
-    reply = reply.replace(/[\x00-\x1F\x7F]/g, ""); // caracteres invisibles
-    reply = reply.trim();
-
-    // ✅ siempre devolvemos en español
-    res.json({
-      reply: reply || "No recibí respuesta en español"
-    });
-
+    res.json({ reply }); // ya viene limpio y procesado desde el servicio
   } catch (error) {
-    console.error("❌ Error en Ollama:", error);
-    res.status(500).json({
-      error: "Error al comunicarse con Ollama"
-    });
+    console.error("❌ Error en ChatService:", error);
+    res.status(500).json({ error: "Error al comunicarse con el chat" });
   }
 });
+
 
 // crear transacción por usuario
 app.post("/api/transacciones", async (req, res) => {
@@ -377,7 +355,6 @@ app.post("/api/transacciones", async (req, res) => {
     });
   }
 });
-
 
 // Rutas de portafolio por usuario
 app.use("/api/portafolio", portafolioRoutes);
