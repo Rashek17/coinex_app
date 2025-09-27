@@ -1,0 +1,422 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 16.2
+-- Dumped by pg_dump version 16.2
+
+-- Started on 2025-09-25 13:33:48
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 4 (class 2615 OID 2200)
+-- Name: public; Type: SCHEMA; Schema: -; Owner: pg_database_owner
+--
+
+CREATE SCHEMA public;
+
+
+ALTER SCHEMA public OWNER TO pg_database_owner;
+
+--
+-- TOC entry 4831 (class 0 OID 0)
+-- Dependencies: 4
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
+--
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 222 (class 1259 OID 66155)
+-- Name: portafolio; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.portafolio (
+    id_portafolio integer NOT NULL,
+    id_usuario integer,
+    activo character varying(50) NOT NULL,
+    cantidad_total numeric(18,8) DEFAULT 0 NOT NULL,
+    valor_promedio numeric(18,2) DEFAULT 0 NOT NULL,
+    fecha_actualizacion timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.portafolio OWNER TO postgres;
+
+--
+-- TOC entry 221 (class 1259 OID 66154)
+-- Name: portafolio_id_portafolio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.portafolio_id_portafolio_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.portafolio_id_portafolio_seq OWNER TO postgres;
+
+--
+-- TOC entry 4832 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: portafolio_id_portafolio_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.portafolio_id_portafolio_seq OWNED BY public.portafolio.id_portafolio;
+
+
+--
+-- TOC entry 216 (class 1259 OID 57949)
+-- Name: rol; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.rol (
+    id_rol integer NOT NULL,
+    nombre character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.rol OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 57948)
+-- Name: rol_id_rol_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.rol_id_rol_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.rol_id_rol_seq OWNER TO postgres;
+
+--
+-- TOC entry 4833 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: rol_id_rol_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.rol_id_rol_seq OWNED BY public.rol.id_rol;
+
+
+--
+-- TOC entry 220 (class 1259 OID 66141)
+-- Name: transacciones; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.transacciones (
+    id_transaccion integer NOT NULL,
+    id_usuario integer,
+    tipo text,
+    activo character varying(50) NOT NULL,
+    cantidad numeric(18,8) NOT NULL,
+    precio_unitario numeric(18,2) NOT NULL,
+    fecha timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.transacciones OWNER TO postgres;
+
+--
+-- TOC entry 219 (class 1259 OID 66140)
+-- Name: transacciones_id_transaccion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.transacciones_id_transaccion_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.transacciones_id_transaccion_seq OWNER TO postgres;
+
+--
+-- TOC entry 4834 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: transacciones_id_transaccion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.transacciones_id_transaccion_seq OWNED BY public.transacciones.id_transaccion;
+
+
+--
+-- TOC entry 218 (class 1259 OID 57956)
+-- Name: usuarios; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.usuarios (
+    id_usuario integer NOT NULL,
+    id_rol integer NOT NULL,
+    nombres character varying(100) NOT NULL,
+    apellidos character varying(100) NOT NULL,
+    direccion1 character varying(150),
+    direccion2 character varying(150),
+    nombre_empresa character varying(100),
+    pais character varying(100),
+    ciudad character varying(100),
+    codigo_postal character varying(20),
+    telefono_movil character varying(20),
+    contacto_alterno character varying(20),
+    correo_electronico character varying(150) NOT NULL,
+    facebook_url character varying(255),
+    twitter_url character varying(255),
+    instagram_url character varying(255),
+    linkedin_url character varying(255),
+    nombre_usuario character varying(100) NOT NULL,
+    contrasena character varying(255) NOT NULL,
+    habilitar_doble_autenticacion boolean DEFAULT false,
+    fecha_creacion timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.usuarios OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 57955)
+-- Name: usuarios_id_usuario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.usuarios_id_usuario_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.usuarios_id_usuario_seq OWNER TO postgres;
+
+--
+-- TOC entry 4835 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: usuarios_id_usuario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.usuarios_id_usuario_seq OWNED BY public.usuarios.id_usuario;
+
+
+--
+-- TOC entry 4655 (class 2604 OID 66158)
+-- Name: portafolio id_portafolio; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.portafolio ALTER COLUMN id_portafolio SET DEFAULT nextval('public.portafolio_id_portafolio_seq'::regclass);
+
+
+--
+-- TOC entry 4649 (class 2604 OID 57952)
+-- Name: rol id_rol; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rol ALTER COLUMN id_rol SET DEFAULT nextval('public.rol_id_rol_seq'::regclass);
+
+
+--
+-- TOC entry 4653 (class 2604 OID 66144)
+-- Name: transacciones id_transaccion; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.transacciones ALTER COLUMN id_transaccion SET DEFAULT nextval('public.transacciones_id_transaccion_seq'::regclass);
+
+
+--
+-- TOC entry 4650 (class 2604 OID 57959)
+-- Name: usuarios id_usuario; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios ALTER COLUMN id_usuario SET DEFAULT nextval('public.usuarios_id_usuario_seq'::regclass);
+
+
+--
+-- TOC entry 4825 (class 0 OID 66155)
+-- Dependencies: 222
+-- Data for Name: portafolio; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.portafolio (id_portafolio, id_usuario, activo, cantidad_total, valor_promedio, fecha_actualizacion, updated_at) VALUES (5, 1, 'BTC', 2.50000000, 25000.00, '2025-09-24 20:22:04.837166', '2025-09-24 20:22:04.837166');
+
+
+--
+-- TOC entry 4819 (class 0 OID 57949)
+-- Dependencies: 216
+-- Data for Name: rol; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.rol (id_rol, nombre) VALUES (1, 'Administrador');
+INSERT INTO public.rol (id_rol, nombre) VALUES (2, 'Usuario');
+
+
+--
+-- TOC entry 4823 (class 0 OID 66141)
+-- Dependencies: 220
+-- Data for Name: transacciones; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.transacciones (id_transaccion, id_usuario, tipo, activo, cantidad, precio_unitario, fecha) VALUES (7, 1, 'BTC', 'COMPRA', 0.50000000, 25000.00, '2025-09-22 03:37:55.223711');
+INSERT INTO public.transacciones (id_transaccion, id_usuario, tipo, activo, cantidad, precio_unitario, fecha) VALUES (8, 1, 'ETH', 'VENTA', 1.20000000, 25000.00, '2025-09-22 03:38:44.083537');
+INSERT INTO public.transacciones (id_transaccion, id_usuario, tipo, activo, cantidad, precio_unitario, fecha) VALUES (25, 1, 'BTC', 'COMPRA', 1.00000000, 25000.00, '2025-09-24 20:22:04.527843');
+INSERT INTO public.transacciones (id_transaccion, id_usuario, tipo, activo, cantidad, precio_unitario, fecha) VALUES (26, 1, 'BTC', 'COMPRA', 1.50000000, 25000.00, '2025-09-25 18:22:34.989721');
+
+
+--
+-- TOC entry 4821 (class 0 OID 57956)
+-- Dependencies: 218
+-- Data for Name: usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.usuarios (id_usuario, id_rol, nombres, apellidos, direccion1, direccion2, nombre_empresa, pais, ciudad, codigo_postal, telefono_movil, contacto_alterno, correo_electronico, facebook_url, twitter_url, instagram_url, linkedin_url, nombre_usuario, contrasena, habilitar_doble_autenticacion, fecha_creacion) VALUES (3, 2, 'Andrés', 'Ramírez', 'Av. Siempre Viva 742', NULL, NULL, 'Argentina', 'Buenos Aires', '1406', '1134567890', NULL, 'andres.ramirez@example.com', 'https://facebook.com/andresramirez', NULL, NULL, NULL, 'andresr', 'qwerty', false, '2025-09-17 21:56:08.938311');
+INSERT INTO public.usuarios (id_usuario, id_rol, nombres, apellidos, direccion1, direccion2, nombre_empresa, pais, ciudad, codigo_postal, telefono_movil, contacto_alterno, correo_electronico, facebook_url, twitter_url, instagram_url, linkedin_url, nombre_usuario, contrasena, habilitar_doble_autenticacion, fecha_creacion) VALUES (1, 1, 'Carlos', 'Pérez', 'Calle 123', 'Apto 4B', 'TechSoft', 'Colombia', 'Bogotá', '110111', '3001234567', '3107654321', 'carlos.perez@example.com', 'https://facebook.com/carlosperez', 'https://twitter.com/carlosp', 'https://instagram.com/carlosp', 'https://linkedin.com/in/carlosperez', 'carlosp', '$2a$10$zOObHVw7/7rWLxwWM/GWm.pHz6vHAUvj.IS3q9KhRSbJH/wwQlxzi', true, '2025-09-17 21:56:08.938311');
+INSERT INTO public.usuarios (id_usuario, id_rol, nombres, apellidos, direccion1, direccion2, nombre_empresa, pais, ciudad, codigo_postal, telefono_movil, contacto_alterno, correo_electronico, facebook_url, twitter_url, instagram_url, linkedin_url, nombre_usuario, contrasena, habilitar_doble_autenticacion, fecha_creacion) VALUES (7, 1, 'Miguel ', 'Franco', 'Carerrara 132', 'Ondas de Otun ', 'BPMco Super', 'Colombia', 'ad34', '2344', '300021548848', '32122554', 'miguael@gmail.com', NULL, NULL, NULL, NULL, 'migue123', '$2b$10$yYu4PKXnZl59fLVnA.r9OOtGEyyrGGvjCbg/jo2QipSRZewruhCfK', true, '2025-09-21 18:12:14.845564');
+INSERT INTO public.usuarios (id_usuario, id_rol, nombres, apellidos, direccion1, direccion2, nombre_empresa, pais, ciudad, codigo_postal, telefono_movil, contacto_alterno, correo_electronico, facebook_url, twitter_url, instagram_url, linkedin_url, nombre_usuario, contrasena, habilitar_doble_autenticacion, fecha_creacion) VALUES (6, 2, 'Valen ', 'Norena Castano', 'Villa Nueva ', 'Ondas de Otun ', 'Veterinaria S.A', 'Colombia', '234valengL2', '12321466', '300021548', '3212255434', 'valen121@gmail.com', 'facbook./valencom', 'valenTwtter.com.co', 'IntaValen.com', 'linkend.comvalen.co', 'vlane121', '$2b$10$cmP6OnVrxjsSmIwaryTm6urzlKVVZrJDNbYc0lcbjytPpbO3OEFIe', true, '2025-09-24 19:45:38.941568');
+
+
+--
+-- TOC entry 4836 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: portafolio_id_portafolio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.portafolio_id_portafolio_seq', 5, true);
+
+
+--
+-- TOC entry 4837 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: rol_id_rol_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.rol_id_rol_seq', 6, true);
+
+
+--
+-- TOC entry 4838 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: transacciones_id_transaccion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.transacciones_id_transaccion_seq', 26, true);
+
+
+--
+-- TOC entry 4839 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: usuarios_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.usuarios_id_usuario_seq', 11, true);
+
+
+--
+-- TOC entry 4671 (class 2606 OID 66163)
+-- Name: portafolio portafolio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.portafolio
+    ADD CONSTRAINT portafolio_pkey PRIMARY KEY (id_portafolio);
+
+
+--
+-- TOC entry 4661 (class 2606 OID 57954)
+-- Name: rol rol_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rol
+    ADD CONSTRAINT rol_pkey PRIMARY KEY (id_rol);
+
+
+--
+-- TOC entry 4669 (class 2606 OID 66148)
+-- Name: transacciones transacciones_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.transacciones
+    ADD CONSTRAINT transacciones_pkey PRIMARY KEY (id_transaccion);
+
+
+--
+-- TOC entry 4663 (class 2606 OID 57967)
+-- Name: usuarios usuarios_correo_electronico_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios
+    ADD CONSTRAINT usuarios_correo_electronico_key UNIQUE (correo_electronico);
+
+
+--
+-- TOC entry 4665 (class 2606 OID 57969)
+-- Name: usuarios usuarios_nombre_usuario_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios
+    ADD CONSTRAINT usuarios_nombre_usuario_key UNIQUE (nombre_usuario);
+
+
+--
+-- TOC entry 4667 (class 2606 OID 57965)
+-- Name: usuarios usuarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios
+    ADD CONSTRAINT usuarios_pkey PRIMARY KEY (id_usuario);
+
+
+--
+-- TOC entry 4672 (class 2606 OID 57970)
+-- Name: usuarios fk_usuarios_rol; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios
+    ADD CONSTRAINT fk_usuarios_rol FOREIGN KEY (id_rol) REFERENCES public.rol(id_rol) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 4674 (class 2606 OID 66164)
+-- Name: portafolio portafolio_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.portafolio
+    ADD CONSTRAINT portafolio_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES public.usuarios(id_usuario) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 4673 (class 2606 OID 66149)
+-- Name: transacciones transacciones_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.transacciones
+    ADD CONSTRAINT transacciones_id_usuario_fkey FOREIGN KEY (id_usuario) REFERENCES public.usuarios(id_usuario) ON DELETE CASCADE;
+
+
+-- Completed on 2025-09-25 13:33:48
+
+--
+-- PostgreSQL database dump complete
+--
+
