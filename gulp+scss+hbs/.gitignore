@@ -3,3 +3,5 @@ dist-*
 .DS_Store
 .vs_code
 .idea
+# .gitignore
+backend/.env
