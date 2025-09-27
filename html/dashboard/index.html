@@ -1643,16 +1643,15 @@
       });
 
 
-
       let activoSeleccionado = "BTC"; // Por defecto
 
       document.querySelectorAll(".dropdown-item").forEach(item => {
          item.addEventListener("click", (e) => {
             e.preventDefault();
 
-            // Validar atributos
-            const activoSeleccionado = item.dataset.symbol || "USD";   // 👈 valor por defecto
-            const imgSeleccionada = item.dataset.img || "01.png";      // 👈 valor por defecto
+            // Actualizamos la variable global, no redeclaramos
+            activoSeleccionado = item.dataset.symbol || "USD";
+            const imgSeleccionada = item.dataset.img || "01.png";
 
             // Obtener elementos destino
             const dropdownBtn = document.querySelector("#dropdownMenuButton5");
@@ -1660,10 +1659,10 @@
 
             if (dropdownBtn) {
                dropdownBtn.innerHTML = `
-        <img src="../assets/images/coins/${imgSeleccionada}" 
-             class="img-fluid avatar avatar-30 avatar-rounded" alt="img"> 
-        ${activoSeleccionado}
-      `;
+            <img src="../assets/images/coins/${imgSeleccionada}" 
+                 class="img-fluid avatar avatar-30 avatar-rounded" alt="img"> 
+            ${activoSeleccionado}
+         `;
             } else {
                console.warn("⚠️ No se encontró #dropdownMenuButton5 en el DOM");
             }
@@ -1675,6 +1674,7 @@
             }
          });
       });
+
 
 
       // acción comprar
