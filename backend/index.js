@@ -1,10 +1,14 @@
 // index.js
 const express = require("express");
 const cors = require("cors");
+const path = require("path");  
+const session = require("express-session");
 require("dotenv").config();
 const pool = require("./db");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
+
+// Routes y factories
 const cryptoRoutes = require("./routes/cryptoRoutes");
 const UsuarioRepositoryFactory = require("./factories/UsuarioRepositoryFactory");
 const TransaccionRepository = require("./repositories/TransaccionRepository");
@@ -13,6 +17,10 @@ const portafolioRoutes = require("./routes/portafolioRoutes");
 const analisisRoutes = require("./routes/analisisRoutes");
 const historyRoutes = require("./routes/historyRoutes");
 
+// Middleware de autenticación
+const authMiddleware = require("./middlewares/authMiddleware");
+
+
 
 const {
   OpenAI
@@ -20,7 +28,6 @@ const {
 const {
   GPT4All
 } = require('gpt4all');
-const path = require('path');
 const ollama = require("ollama");
 
 const app = express();
@@ -35,6 +42,25 @@ const usuarioRepo = factory.create();
 // Crear instancia del repositorio de transacciones
 const transaccionRepo = new TransaccionRepository(pool);
 
+
+app.use(session({
+  secret: process.env.SESSION_SECRET || "mi_clave_secreta",
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false, maxAge: 1000 * 60 } // 1 minuto
+}));
+
+
+// Página pública de login
+app.get("/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/html/dashboard/auth/sign-in.html"));
+});
+
+// Página privada del dashboard
+app.get("/dashboard", authMiddleware, (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/html/dashboard/index.html"));
+});
+
 // Ruta de prueba para ver que el server funciona
 app.get("/", (req, res) => {
   res.send("Servidor funcionando ✅");
@@ -44,24 +70,11 @@ app.get("/", (req, res) => {
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
-  try {
-    const usuario = await usuarioRepo.login(email, password);
+  const usuario = await usuarioRepo.login(email, password);
+  if (!usuario) return res.status(400).json({ error: "Usuario no encontrado" });
 
-    if (usuario === null) {
-      return res.status(400).json({ error: "Usuario no encontrado" });
-    }
-    if (usuario === false) {
-      return res.status(401).json({ error: "Contraseña incorrecta" });
-    }
-
-    res.json({
-      message: "Login exitoso ✅",
-      usuario
-    });
-  } catch (err) {
-    console.error("Error en login:", err);
-    res.status(500).json({ error: "Error en el servidor 🚨" });
-  }
+  req.session.usuarioId = usuario.id;  // guardar sesión
+  res.json({ message: "Login exitoso", usuario });  // front redirige a /dashboard
 });
 
 // Usuarios para select
@@ -71,7 +84,9 @@ app.get("/usuarios-select-all", async (req, res) => {
     res.json(usuarios);
   } catch (err) {
     console.error(err.message);
-    res.status(500).json({ error: "Error al obtener usuarios" });
+    res.status(500).json({
+      error: "Error al obtener usuarios"
+    });
   }
 });
 
@@ -166,17 +181,23 @@ app.delete("/usuarios/:id", async (req, res) => {
 // Obtener transacciones por usuario
 app.get("/transacciones/:idUsuario", async (req, res) => {
   try {
-    const { idUsuario } = req.params;
+    const {
+      idUsuario
+    } = req.params;
     const transacciones = await transaccionRepo.obtenerPorUsuario(idUsuario);
 
     if (transacciones.length === 0) {
-      return res.json({ mensaje: "No hay transacciones para este usuario" });
+      return res.json({
+        mensaje: "No hay transacciones para este usuario"
+      });
     }
 
     res.json(transacciones);
   } catch (err) {
     console.error("Error al obtener transacciones:", err);
-    res.status(500).json({ error: "Error en el servidor " });
+    res.status(500).json({
+      error: "Error en el servidor "
+    });
   }
 });
 

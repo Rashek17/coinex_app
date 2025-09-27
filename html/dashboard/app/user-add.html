@@ -123,12 +123,12 @@
                                         </svg>
                                     </i>
                                     <i class="sidenav-mini-icon"> U </i>
-                                    <span class="item-name">Lista De Usuarios</span>
+                                    <span class="item-name">Lista Usuarios</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="display: none;">
                         <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-auth" role="button"
                             aria-expanded="false" aria-controls="sidebar-user">
                             <i class="icon">
@@ -214,37 +214,6 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="../../dashboard/maps/google.html">
-                            <i class="icon">
-                                <svg width="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M14.5 10.5005C14.5 9.11924 13.3808 8 12.0005 8C10.6192 8 9.5 9.11924 9.5 10.5005C9.5 11.8808 10.6192 13 12.0005 13C13.3808 13 14.5 11.8808 14.5 10.5005Z"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"></path>
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M11.9995 21C10.801 21 4.5 15.8984 4.5 10.5633C4.5 6.38664 7.8571 3 11.9995 3C16.1419 3 19.5 6.38664 19.5 10.5633C19.5 15.8984 13.198 21 11.9995 21Z"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"></path>
-                                </svg>
-                            </i>
-                            <span class="item-name">Maps</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="../../dashboard/icons/outline.html">
-                            <i class="icon">
-                                <svg width="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M19.739 6.15368C19.739 3.40281 17.8583 2.30005 15.1506 2.30005H8.79167C6.16711 2.30005 4.2002 3.32762 4.2002 5.97022V20.694C4.2002 21.4198 4.98115 21.877 5.61373 21.5221L11.9957 17.9422L18.3225 21.5161C18.9561 21.873 19.739 21.4158 19.739 20.689V6.15368Z"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"></path>
-                                    <path d="M8.27148 9.02811H15.5898" stroke="currentColor" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                            </i>
-                            <span class="item-name">icons</span></a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link " href="../../dashboard/errors/error404.html">
                             <i class="icon">
                                 <svg width="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -265,19 +234,7 @@
                         <hr class="hr-horizontal">
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="../../index.html" target="_blank">
-                            <i class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                            </i>
-                            <span class="item-name">Components</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " target="_blank" href="#">
+                        <a class="nav-link " target="_blank" href="https://deepwiki.com/Rashek17/coinex_app">
                             <i class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -864,7 +821,7 @@
                     "¡HOLA! " + usuario.nombre.toUpperCase();
 
                 // Rol traducido
-                const rolTexto = usuario.rol === 1 ? "ADMINISTRADOR" : "USUARIO";
+                const rolTexto = usuario.rol;
                 document.querySelector(".caption-sub-title").textContent = rolTexto;
             }
         });

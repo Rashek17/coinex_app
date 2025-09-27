@@ -153,7 +153,7 @@
                               </svg>
                            </i>
                            <i class="sidenav-mini-icon"> U </i>
-                           <span class="item-name">Perfil de Usuario</span>
+                           <span class="item-name">Perfil Usuario</span>
                         </a>
                      </li>
                      <li class="nav-item">
@@ -175,7 +175,7 @@
                               </svg>
                            </i>
                            <i class="sidenav-mini-icon"> U </i>
-                           <span class="item-name">Lista de Usuarios</span>
+                           <span class="item-name">Lista Usuarios</span>
                         </a>
                      </li>
                   </ul>
@@ -260,23 +260,6 @@
                   </ul>
                </li>
                <li class="nav-item">
-                  <a class="nav-link " href="../dashboard/maps/google.html">
-                     <i class="icon">
-                        <svg width="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <path fill-rule="evenodd" clip-rule="evenodd"
-                              d="M14.5 10.5005C14.5 9.11924 13.3808 8 12.0005 8C10.6192 8 9.5 9.11924 9.5 10.5005C9.5 11.8808 10.6192 13 12.0005 13C13.3808 13 14.5 11.8808 14.5 10.5005Z"
-                              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                           </path>
-                           <path fill-rule="evenodd" clip-rule="evenodd"
-                              d="M11.9995 21C10.801 21 4.5 15.8984 4.5 10.5633C4.5 6.38664 7.8571 3 11.9995 3C16.1419 3 19.5 6.38664 19.5 10.5633C19.5 15.8984 13.198 21 11.9995 21Z"
-                              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                           </path>
-                        </svg>
-                     </i>
-                     <span class="item-name">Mapas</span>
-                  </a>
-               </li>
-               <li class="nav-item">
                   <a class="nav-link " href="../dashboard/errors/error404.html">
                      <i class="icon">
                         <svg width="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -297,7 +280,7 @@
                   <hr class="hr-horizontal">
                </li>
                <li class="nav-item">
-                  <a class="nav-link " target="_blank" href="#">
+                  <a class="nav-link " target="_blank" href="https://deepwiki.com/Rashek17/coinex_app">
                      <i class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none" viewBox="0 0 24 24"
                            stroke="currentColor">
@@ -1885,6 +1868,28 @@
             // Rol traducido
             const rolTexto = usuario.rol;
             document.querySelector(".caption-sub-title").textContent = rolTexto;
+            // Seleccionamos el <li> del menú Usuarios
+            // Seleccionamos los enlaces sensibles
+            const editarUsuario = document.querySelector("a[href='../dashboard/app/user-add.html']");
+            const listaUsuarios = document.querySelector("a[href='../dashboard/app/user-list.html']");
+
+            if (usuario && usuario.rol === "Administrador") {
+               // Habilitar enlaces para administradores
+               [editarUsuario, listaUsuarios].forEach(link => {
+                  link.classList.remove("disabled");
+                  link.removeAttribute("aria-disabled");
+                  link.style.pointerEvents = "auto";
+                  link.style.opacity = "1";
+               });
+            } else {
+               // Deshabilitar para otros roles
+               [editarUsuario, listaUsuarios].forEach(link => {
+                  link.classList.add("disabled");
+                  link.setAttribute("aria-disabled", "true");
+                  link.style.pointerEvents = "none"; // no clickeable
+                  link.style.opacity = "0.5";         // visualmente deshabilitado
+               });
+            }
          }
       });
 
