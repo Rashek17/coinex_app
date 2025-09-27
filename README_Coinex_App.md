@@ -11,40 +11,44 @@ Este README explica cómo instalar, configurar y entender la estructura completa
 ```
 coinex_app/
 │
-├─ backend/
-├─ factories/            # Factory para crear instancias de repositories y fetchers
-│   ├─ AnalisisRepositoryFactory.js
-│   ├─ CryptoFetcherFactory.js
-│   ├─ PortafolioRepositoryFactory.js
-│   └─ UsuarioRepositoryFactory.js
+├─ backend/                # Código del servidor
+│   ├─ chat/               # Servicios de chat (IA)
+│   │   └─ OllamaChatService.js
+│   ├─ factories/          # Factories para crear instancias de repositories y fetchers
+│   │   ├─ AnalisisRepositoryFactory.js
+│   │   ├─ CryptoFetcherFactory.js
+│   │   ├─ PortafolioRepositoryFactory.js
+│   │   └─ UsuarioRepositoryFactory.js
+│   ├─ fetchers/           # Fetchers para datos de criptomonedas
+│   │   ├─ CoinGeckoHistoryFetcher.js
+│   │   ├─ CoinMarketCapFetcher.js
+│   │   ├─ CryptoFetcher.js
+│   │   ├─ CryptoFetcherFactory.js
+│   │   └─ MockCryptoFetcher.js
+│   ├─ repositories/       # Lógica de acceso a datos
+│   │   ├─ AnalisisRepository.js
+│   │   ├─ PortafolioRepository.js
+│   │   ├─ TransaccionRepository.js
+│   │   └─ UsuarioRepository.js
+│   ├─ middlewares/        # Middlewares de Express
+│   │   └─ authMiddleware.js
+│   ├─ routes/             # Rutas del servidor
+│   ├─ db.js               # Configuración de la base de datos
+│   └─ index.js            # Punto de entrada del servidor
 │
-├─ fetchers/             # Fetchers para obtener datos de criptomonedas
-│   ├─ CoinGeckoHistoryFetcher.js
-│   ├─ CoinMarketCapFetcher.js
-│   ├─ CryptoFetcher.js
-│   ├─ CryptoFetcherFactory.js
-│   └─ MockCryptoFetcher.js
+├─ bd/                     # Scripts y configuraciones de la base de datos
+│   ├─ migrations/         # Migraciones de tablas
+│   └─ models/             # Modelos de datos
 │
-├─ repositories/         # Repositorios que manejan la lógica de la base de datos
-│   ├─ AnalisisRepository.js
-│   ├─ PortafolioRepository.js
-│   ├─ TransaccionRepository.js
-│   └─ UsuarioRepository.js
+├─ frontend/               # Archivos del cliente web
+│   ├─ html/               # Vistas HTML
+│   ├─ gulp+scss+hbs/      # Automatización, estilos SCSS y plantillas Handlebars
+│   └─ js/                 # Scripts de frontend
 │
-├─ routes/               # Rutas del servidor Express
-├─ db.js                 # Configuración de la base de datos
-└─ index.js              # Punto de entrada del servidor
-├─ bd/                    # Scripts y configuraciones de la base de datos
-│   ├─ migrations/        # Migraciones de tablas
-│   └─ models/            # Modelos de datos
-│
-├─ frontend/              # Archivos del cliente web
-│   ├─ html/              # Archivos HTML de las vistas
-│   ├─ gulp+scss+hbs/     # Automatización, estilos SCSS y plantillas Handlebars
-│   └─ js/                # Scripts de frontend
-│
-├─ doc/                   # Documentación del proyecto (diagramas, guías)
-└─ package.json           # Dependencias y scripts del proyecto
+├─ doc/                    # Documentación del proyecto (diagramas, guías)
+├─ package.json            # Dependencias y scripts del proyecto
+└─ package-lock.json       # Bloqueo de versiones
+
 ```
 
 ---
